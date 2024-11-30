@@ -5,6 +5,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useAppContext } from "../../../context";
 import { Button } from "../../Button/Button";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { getNotationDisplay } from "../../../config/ui";
 
 type Props = SidePopoverProps;
 
@@ -23,7 +24,7 @@ export const SettingsPopover = ({
   return (
     <SidePopover {...sidePopoverProps}>
       <Button before={<FaPencilAlt />} onClick={handleSwitchNotation}>
-        Notation: {notation}
+        Notation: {getNotationDisplay(notation)}
       </Button>
     </SidePopover>
   );

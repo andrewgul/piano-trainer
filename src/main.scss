@@ -55,9 +55,29 @@ table {
   box-sizing: border-box;
 }
 
+button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: center;
+  font: inherit;
+  outline: none;
+  padding: 0;
+}
+
 /* Improve default font rendering */
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-height: 100vh;
+  background: #D9D9DB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,11 +1,18 @@
 import * as React from 'react';
 import s from './Piano.module.scss';
 import { Octave } from './Octave';
+import { PianoContext } from './context';
 
-export const Piano = (): React.ReactElement => {
+type Props = {
+  notation?: 'letter' | 'solfedge';
+};
+
+export const Piano = ({ notation = 'letter' }: Props): React.ReactElement => {
   return (
-    <div className={s.container}>
-      <Octave />
-    </div>
+    <PianoContext.Provider value={{ notation }}>
+      <div className={s.container}>
+        <Octave />
+      </div>
+    </PianoContext.Provider>
   );
 };

@@ -1,0 +1,31 @@
+@import '../../styles/colors.scss';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+  background-color: $white;
+  color: $black;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+  &:hover {
+    background-color: lighten($white, 6%); 
+  }
+
+  &:active {
+    background-color: lighten($white, 10%);
+  }
+
+  &:disabled {
+    background-color: $gray-light;
+    color: $gray-dark;
+    cursor: not-allowed;
+  }
+}

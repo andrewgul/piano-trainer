@@ -1,4 +1,4 @@
-import { Note, NOTES, Scale, SCALES_MAP } from '../config/music';
+import { Note, NOTES, Scale, SCALES_MAP } from '@config/music';
 
 export const getNotesInScale = (rootNote: Note, scale: Scale) => {
   const indexOfRootNote = NOTES.indexOf(rootNote);

@@ -1,4 +1,4 @@
-import { Notation } from "../types/Notation";
+import { Notation } from "@types/Notation";
 
 export const NOTATION_DISPLAY: Record<Notation, string> = {
   letter: 'Letter (C, D, E...)',

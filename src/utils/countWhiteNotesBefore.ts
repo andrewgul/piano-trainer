@@ -1,4 +1,4 @@
-import { NOTES } from '../config/music';
+import { NOTES } from '@config/music';
 
 export const countWhiteNotesBefore = (incomingNote: string) => {
   let result = 0;

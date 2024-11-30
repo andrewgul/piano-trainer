@@ -1,4 +1,4 @@
-import { Notation } from "../types/Notation";
+import { Notation } from "@types/Notation";
 import * as React from 'react';
 
 type LocalStorageData = {

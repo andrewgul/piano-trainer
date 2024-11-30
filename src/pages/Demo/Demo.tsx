@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Piano } from "@components/Piano";
 import { Button } from "@components/Button/Button";
-import { Header } from "@components/Header";
 import { Note, NOTES, Scale, SCALES } from "@config/music";
 import { getNotatedNote } from "@utils/getNotatedNote";
+import { useAppContext } from "@components/App/context";
 
 import s from "./Demo.module.scss";
 
-import { useAppContext } from "@/context";
 
 export const Demo = (): React.ReactElement => {
   const { notation } = useAppContext();
@@ -32,41 +31,39 @@ export const Demo = (): React.ReactElement => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className={s.container}>
-        <div className={s.control}>
-          <div className={s["button-group"]}>
-            {SCALES.map((scale) => (
-              <Button
-                onClick={() => handleChangeScale(scale)}
-                selected={selectedScale === scale}
-              >
-                {scale}
-              </Button>
-            ))}
-          </div>
-          <div className={s["button-group"]}>
-            {NOTES.map((note) => (
-              <Button
-                key={note}
-                onClick={() => handleChangeRootNote(note)}
-                selected={selectedRootNote === note}
-              >
-                {getNotatedNote(note, notation)}
-              </Button>
-            ))}
-          </div>
-          <div className={s['button-group']}>
-            <Button onClick={handleReset}>reset</Button>
-          </div>
+    <div className={s.container}>
+      <div className={s.control}>
+        <div className={s["button-group"]}>
+          {SCALES.map((scale) => (
+            <Button
+              onClick={() => handleChangeScale(scale)}
+              selected={selectedScale === scale}
+            >
+              {scale}
+            </Button>
+          ))}
         </div>
-        <Piano
-          notation={notation}
-          scale={selectedScale}
-          rootNote={selectedRootNote}
-        />
+        <div className={s["button-group"]}>
+          {NOTES.map((note) => (
+            <Button
+              key={note}
+              onClick={() => handleChangeRootNote(note)}
+              selected={selectedRootNote === note}
+            >
+              {getNotatedNote(note, notation)}
+            </Button>
+          ))}
+        </div>
+        <div className={s['button-group']}>
+          <Button onClick={handleReset}>reset</Button>
+        </div>
       </div>
-    </>
+      <Piano
+        notation={notation}
+        scale={selectedScale}
+        rootNote={selectedRootNote}
+      />
+    </div>
+
   );
 };

@@ -30,6 +30,11 @@
     }
   }
 
+  &_stretched {
+    display: block;
+    width: 100%;
+  }
+
   &:hover {
     background-color: darken($white, 6%); 
   }

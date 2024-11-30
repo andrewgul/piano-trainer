@@ -3,10 +3,9 @@ import { FaPencilAlt } from "react-icons/fa";
 import { Button } from "@components/Button/Button";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 import { getNotationDisplay } from "@config/ui";
+import { useAppContext } from "@components/App/context";
 
 import { SidePopover, SidePopoverProps } from "../../SidePopover";
-
-import { useAppContext } from "@/context";
 
 type Props = SidePopoverProps;
 

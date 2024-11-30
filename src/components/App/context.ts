@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { Notation } from "./types/Notation";
+import { Notation } from "@types/Notation";
 
 type AppContextValue = {
   notation: Notation;

@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { Note, NOTES, Scale, SCALES } from "../../config/music";
 import s from "./Demo.module.scss";
 import { useAppContext } from "../../context";
+import { getNotatedNote } from "../../utils/getNotatedNote";
 
 export const Demo = (): React.ReactElement => {
   const { notation } = useAppContext();
@@ -50,7 +51,7 @@ export const Demo = (): React.ReactElement => {
                 onClick={() => handleChangeRootNote(note)}
                 selected={selectedRootNote === note}
               >
-                {note}
+                {getNotatedNote(note, notation)}
               </Button>
             ))}
           </div>

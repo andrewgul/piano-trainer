@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import s from './Header.module.scss';
-import { Button } from '../Button/Button';
 import { SettingsPopover } from './SettingsPopover';
+import { IconButton } from '../IconButton/IconButton';
+import { LINKS } from '../../config/links';
 
 export const Header = (): React.ReactElement => {
   const [settingsOpened, setSettingsOpened] = React.useState(false);
@@ -18,9 +19,10 @@ export const Header = (): React.ReactElement => {
   return (
     <>
       <div className={s.header}>
-        <div></div>
-        <div>
-          <Button onClick={openSettings}>Settings</Button>
+        <div className={s.logo}>Piano Trainer</div>
+        <div className={s.actions}>
+          <IconButton link={LINKS.myGithub} icon="github" />
+          <IconButton onClick={openSettings} icon="gear" />
         </div>
       </div>
       <SettingsPopover shown={settingsOpened} close={closeSettings} />

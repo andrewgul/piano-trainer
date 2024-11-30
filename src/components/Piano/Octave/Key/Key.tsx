@@ -1,15 +1,12 @@
 import * as React from "react";
-import {
-  KeyColor,
-  Note,
-  NOTES_SOLFEGE_NOTATION_MAP,
-} from "../../../../config/music";
+import { KeyColor, Note } from "../../../../config/music";
 import { playNote } from "../../../../utils/playNote";
 import s from "./Key.module.scss";
 import clsx from "clsx";
 import { usePianoContext } from "../../context";
 import { MAP_KEYS_TO_KEYBOARD } from "../../../../config/keyboard";
 import { useKey } from "../../../../hooks/useKey";
+import { getNotatedNote } from "../../../../utils/getNotatedNote";
 
 type Props = {
   value: Note;
@@ -55,8 +52,8 @@ export const Key = ({
       className={clsx(s.key, className, s[`key_${color}`], {
         [s.key_highlighted]: highlighted,
         // @todo refactor styles
-        [s.key_white_pressed]: color === 'white' && pressed,
-        [s.key_black_pressed]: color === 'black' && pressed,
+        [s.key_white_pressed]: color === "white" && pressed,
+        [s.key_black_pressed]: color === "black" && pressed,
       })}
       onClick={play}
       style={style}
@@ -67,7 +64,7 @@ export const Key = ({
       onTouchEnd={handlePressEnd}
     >
       <div className={clsx(s.value, s[`value_${color}`])}>
-        {notation === "letter" ? value : NOTES_SOLFEGE_NOTATION_MAP[value]}
+        {getNotatedNote(value, notation)}
       </div>
     </div>
   );

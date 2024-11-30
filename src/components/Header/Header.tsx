@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { IconButton } from '@components/IconButton/IconButton';
+import { LINKS } from '@config/links';
 
 import s from './Header.module.scss';
 import { SettingsPopover } from './SettingsPopover';
-import { IconButton } from '@components/IconButton/IconButton';
-import { LINKS } from '@config/links';
 
 export const Header = (): React.ReactElement => {
   const [settingsOpened, setSettingsOpened] = React.useState(false);

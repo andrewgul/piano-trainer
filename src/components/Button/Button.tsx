@@ -1,7 +1,7 @@
 import * as React from 'react';
+import clsx from 'clsx';
 
 import s from './Button.module.scss';
-import clsx from 'clsx';
 
 type Props = {
   before?: React.ReactNode;

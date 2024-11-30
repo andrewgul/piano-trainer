@@ -1,10 +1,11 @@
 import * as React from 'react';
-import s from './IconButton.module.scss';
 import { IconType } from 'react-icons';
 import { FaTimes } from 'react-icons/fa';
 import { BsGearWideConnected } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import clsx from 'clsx';
+
+import s from './IconButton.module.scss';
 
 type Icon = 'cross' | 'gear' | 'github';
 

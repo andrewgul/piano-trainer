@@ -1,11 +1,12 @@
 import * as React from "react";
 import { KeyColor, Note } from "@config/music";
 import { playNote } from "@utils/playNote";
-import s from "./Key.module.scss";
 import clsx from "clsx";
 import { MAP_KEYS_TO_KEYBOARD } from "@config/keyboard";
 import { useKey } from "@hooks/useKey";
 import { getNotatedNote } from "@utils/getNotatedNote";
+
+import s from "./Key.module.scss";
 import { usePianoContext } from "../../context";
 
 type Props = {

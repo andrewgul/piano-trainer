@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { PORTALS } from '@config/portals';
-import s from './SidePopover.module.scss';
 import clsx from 'clsx';
 import { IconButton } from '@components/IconButton/IconButton';
+
+import s from './SidePopover.module.scss';
 
 export type SidePopoverProps = {
   title: string;

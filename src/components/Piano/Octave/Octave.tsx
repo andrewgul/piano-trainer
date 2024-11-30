@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Note, NOTES } from "@config/music";
-import s from "./Octave.module.scss";
-import { Key } from "./Key";
 import { getKeyColor } from "@utils/getKeyColor";
 import clsx from "clsx";
 import { countWhiteNotesBefore } from "@utils/countWhiteNotesBefore";
+
+import { Key } from "./Key";
+import s from "./Octave.module.scss";
 
 type Props = {
   order?: number;

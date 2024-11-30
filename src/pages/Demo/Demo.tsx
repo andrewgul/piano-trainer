@@ -3,9 +3,11 @@ import { Piano } from "@components/Piano";
 import { Button } from "@components/Button/Button";
 import { Header } from "@components/Header";
 import { Note, NOTES, Scale, SCALES } from "@config/music";
-import s from "./Demo.module.scss";
-import { useAppContext } from "@/context";
 import { getNotatedNote } from "@utils/getNotatedNote";
+
+import s from "./Demo.module.scss";
+
+import { useAppContext } from "@/context";
 
 export const Demo = (): React.ReactElement => {
   const { notation } = useAppContext();

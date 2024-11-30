@@ -1,11 +1,12 @@
 import * as React from "react";
-import { SidePopover, SidePopoverProps } from "../../SidePopover";
 import { FaPencilAlt } from "react-icons/fa";
-
-import { useAppContext } from "@/context";
 import { Button } from "@components/Button/Button";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 import { getNotationDisplay } from "@config/ui";
+
+import { SidePopover, SidePopoverProps } from "../../SidePopover";
+
+import { useAppContext } from "@/context";
 
 type Props = SidePopoverProps;
 

@@ -1,0 +1,40 @@
+@import '../../../../styles/colors.scss';
+@import '../../../../styles/vars.scss';
+
+.key {
+  cursor: pointer;
+  border-radius: 0px 0px 10px 10px;
+
+  &_white {
+    width: $white-note-width;
+    height: $white-note-height;
+    background: $white;
+    border: 0.5px solid $black;
+  }
+
+  &_black {
+    width: $black-note-width;
+    height: $black-note-height;
+    background: $black;
+  }
+}
+
+.value {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &_white {
+    bottom: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $black;
+  }
+
+  &_black {
+    bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $white;
+  }
+}

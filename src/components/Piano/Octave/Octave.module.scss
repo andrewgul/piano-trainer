@@ -1,0 +1,23 @@
+@import '../../../styles/vars.scss';
+
+.octave {
+  display: flex;
+  position: relative;
+}
+
+.key {
+  flex-shrink: 0;
+
+  &_white {
+    position: relative;
+    z-index: 1;
+  }
+
+  &_black {
+    position: absolute;
+    top: 0;
+    left: calc(var(--offset) * #{$white-note-width});
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+}

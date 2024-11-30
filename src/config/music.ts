@@ -15,6 +15,8 @@ export const NOTES = [
 
 export type Note = (typeof NOTES)[number];
 
+export type KeyColor = 'black' | 'white';
+
 /**
  * whole, half, whole, whole, half, whole, whole
  */

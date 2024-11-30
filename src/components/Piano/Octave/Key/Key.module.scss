@@ -22,12 +22,20 @@
     height: $white-note-height;
     background: $white;
     border: 0.5px solid $black;
+
+    &_pressed {
+      background: darken($white, 10%);
+    }
   }
 
   &_black {
     width: $black-note-width;
     height: $black-note-height;
     background: $black;
+
+    &_pressed {
+      background: darken($black, 10%);
+    }
   }
 }
 

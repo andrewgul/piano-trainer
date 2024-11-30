@@ -38,7 +38,7 @@ export const Demo = (): React.ReactElement => {
           <Button onClick={handleReset}>reset</Button>
         </div>
       </div>
-      <Piano octaves={1} notation={notation} scale={selectedScale} rootNote={selectedRootNote} />
+      <Piano notation={notation} scale={selectedScale} rootNote={selectedRootNote} />
     </>
   );
 };

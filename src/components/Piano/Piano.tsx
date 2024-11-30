@@ -10,9 +10,10 @@ type Props = {
   rootNote?: Note | null;
   scale?: Scale | null;
   octaves?: number;
+  startOctave?: number;
 };
 
-export const Piano = ({ notation = 'letter', octaves = 1, rootNote, scale }: Props): React.ReactElement => {
+export const Piano = ({ notation = 'letter', octaves = 2, startOctave = 4, rootNote, scale }: Props): React.ReactElement => {
   const highlightedNotes = React.useMemo(() => {
     if (!rootNote || !scale) {
       return null;
@@ -24,8 +25,8 @@ export const Piano = ({ notation = 'letter', octaves = 1, rootNote, scale }: Pro
   return (
     <PianoContext.Provider value={{ notation }}>
       <div className={s.piano}>
-        {Array.from({ length: octaves }, (_, index) => index).map((octave) => (
-          <Octave key={octave} highlightedNotes={highlightedNotes} />
+        {Array.from({ length: octaves }, (_, index) => startOctave + index).map((octave) => (
+          <Octave key={octave} highlightedNotes={highlightedNotes} order={octave} />
         ))}
       </div>
     </PianoContext.Provider>

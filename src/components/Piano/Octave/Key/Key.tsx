@@ -1,24 +1,74 @@
-import * as React from 'react';
-import { KeyColor, Note, NOTES_SOLFEGE_NOTATION_MAP } from '../../../../config/music';
-import { playNote } from '../../../../utils/playNote';
-import s from './Key.module.scss';
-import clsx from 'clsx';
-import { usePianoContext } from '../../context';
+import * as React from "react";
+import {
+  KeyColor,
+  Note,
+  NOTES_SOLFEGE_NOTATION_MAP,
+} from "../../../../config/music";
+import { playNote } from "../../../../utils/playNote";
+import s from "./Key.module.scss";
+import clsx from "clsx";
+import { usePianoContext } from "../../context";
+import { MAP_KEYS_TO_KEYBOARD } from "../../../../config/keyboard";
+import { useKey } from "../../../../hooks/useKey";
 
 type Props = {
   value: Note;
+  octave: number;
   color: KeyColor;
   highlighted?: boolean;
   className?: string;
   style?: React.CSSProperties;
 };
 
-export const Key = ({ value, color, highlighted = true, className, style }: Props): React.ReactElement => {
+export const Key = ({
+  value,
+  octave,
+  color,
+  highlighted = true,
+  className,
+  style,
+}: Props): React.ReactElement => {
   const { notation } = usePianoContext();
+  const [pressed, setPressed] = React.useState(false);
+
+  const play = React.useCallback(async () => {
+    playNote(value, { octave });
+  }, [value, octave]);
+
+  const handlePressStart = React.useCallback(() => {
+    setPressed(true);
+  }, []);
+
+  const handlePressEnd = React.useCallback(() => {
+    setPressed(false);
+  }, []);
+
+  useKey({
+    keyboardKey: MAP_KEYS_TO_KEYBOARD[`${value}${octave}`],
+    onKeyPress: play,
+    onKeyDown: handlePressStart,
+    onKeyUp: handlePressEnd,
+  });
 
   return (
-    <div className={clsx(s.key, className, s[`key_${color}`], { [s.key_highlighted]: highlighted })} onClick={() => playNote(value)} style={style}>
-      <div className={clsx(s.value, s[`value_${color}`])}>{notation === 'letter' ? value : NOTES_SOLFEGE_NOTATION_MAP[value]}</div>
+    <div
+      className={clsx(s.key, className, s[`key_${color}`], {
+        [s.key_highlighted]: highlighted,
+        // @todo refactor styles
+        [s.key_white_pressed]: color === 'white' && pressed,
+        [s.key_black_pressed]: color === 'black' && pressed,
+      })}
+      onClick={play}
+      style={style}
+      onMouseDown={handlePressStart}
+      onMouseUp={handlePressEnd}
+      onMouseLeave={handlePressEnd}
+      onTouchStart={handlePressStart}
+      onTouchEnd={handlePressEnd}
+    >
+      <div className={clsx(s.value, s[`value_${color}`])}>
+        {notation === "letter" ? value : NOTES_SOLFEGE_NOTATION_MAP[value]}
+      </div>
     </div>
   );
 };

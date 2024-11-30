@@ -15,9 +15,14 @@ const noteFrequencies = {
   'B': 493.88,
 };
 
+type ExtraConfig = {
+  octave?: number;
+  duration?: number;
+};
+
 // Function to play a sound for a given note
-export const playNote = (note: keyof typeof noteFrequencies): void => {
-  const frequency = noteFrequencies[note];
+export const playNote = (note: keyof typeof noteFrequencies, { duration = 0.25, octave = 4 }: ExtraConfig = {}): void => {
+  const frequency = noteFrequencies[note] * Math.pow(2, octave - 4);
 
   if (!frequency) {
     console.error("Invalid note!");
@@ -35,5 +40,5 @@ export const playNote = (note: keyof typeof noteFrequencies): void => {
   gainNode.connect(audioContext.destination);
 
   oscillator.start();
-  oscillator.stop(audioContext.currentTime + 0.25); // Play the note for 1 second
+  oscillator.stop(audioContext.currentTime + duration);
 };

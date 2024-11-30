@@ -4,6 +4,7 @@ import { useLocalStorage } from '@hooks/useLocalStorage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from '@pages/Home';
 import { Header } from '@components/Header';
+import { PATHS } from '@config/paths';
 
 import { AppContext, useCreateAppContext } from './context';
 
@@ -21,8 +22,8 @@ export const App = (): React.ReactElement => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/demo" element={<Demo />} />
+          <Route path={PATHS.home.getPath()} element={<Home />} />
+          <Route path={PATHS.demo.getPath()} element={<Demo />} />
         </Routes>
       </BrowserRouter>
     </AppContext.Provider>

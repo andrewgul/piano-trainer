@@ -69,6 +69,11 @@ button {
   padding: 0;
 }
 
+a {
+  text-decoration: none; /* Removes underline */
+  color: inherit;        /* Inherits the color from the parent element */
+}
+
 /* Improve default font rendering */
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;

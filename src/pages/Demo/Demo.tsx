@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Piano } from "../../components/Piano";
 import { Button } from "../../components/Button/Button";
-import { Header } from "../Header";
+import { Header } from "../../components/Header";
 import { Note, NOTES, Scale, SCALES } from "../../config/music";
 import s from "./Demo.module.scss";
 import { useAppContext } from "../../context";

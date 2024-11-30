@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+@import '../../styles/vars.scss';
+
+.white-note {
+  flex-shrink: 0;
+  cursor: pointer;
+  width: $white-note-width;
+  height: $white-note-height;
+  background: $white;
+  border: 0.5px solid $black;
+  border-radius: 0px 0px 10px 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.value {
+  position: absolute;
+  bottom: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $black;
+  left: 50%;
+  transform: translateX(-50%);
+}

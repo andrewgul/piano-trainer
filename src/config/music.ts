@@ -35,12 +35,23 @@ export type Note = (typeof NOTES)[number];
 
 export type KeyColor = 'black' | 'white';
 
+export const SCALES = ['major', 'minor'] as const;
+
+export type Scale = typeof SCALES[number];
+
+type ScaleArray = [boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean];
+
 /**
  * whole, half, whole, whole, half, whole, whole
  */
-export const MINOR_SCALE = [true, false, true, true, false, true, false, true, true, false, true, false];
+export const MINOR_SCALE: ScaleArray = [true, false, true, true, false, true, false, true, true, false, true, false];
 
 /**
- * whole, 
+ * whole, whole, half, whole, whole, whole, half
  */
-export const MAJOR_SCALE = []
+export const MAJOR_SCALE: ScaleArray = [true, false, true, false, true, true, false, true, false, true, false, true];
+
+export const SCALES_MAP: Record<Scale, ScaleArray> = {
+  major: MAJOR_SCALE,
+  minor: MINOR_SCALE,
+};

@@ -5,6 +5,17 @@
   cursor: pointer;
   border-radius: 0px 0px 10px 10px;
 
+  &_highlighted {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: $highlight-mask;
+      z-index: 3;
+      border-radius: inherit;
+    }
+  }
+
   &_white {
     width: $white-note-width;
     height: $white-note-height;

@@ -1,0 +1,27 @@
+@import '../../styles//colors.scss';
+
+.button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: $white;
+  color: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+
+  &:hover {
+    background-color: darken($white, 6%); 
+  }
+
+  &:active {
+    background-color: darken($white, 10%);
+  }
+
+  &:disabled {
+    background-color: $gray-light;
+    color: $gray-dark;
+    cursor: not-allowed;
+  }
+}

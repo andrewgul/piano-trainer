@@ -27,11 +27,11 @@
   }
 
   &:hover {
-    background-color: lighten($white, 6%); 
+    background-color: darken($white, 6%); 
   }
 
   &:active {
-    background-color: lighten($white, 10%);
+    background-color: darken($white, 10%);
   }
 
   &:disabled {

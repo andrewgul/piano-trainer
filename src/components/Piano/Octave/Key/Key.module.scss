@@ -5,6 +5,7 @@
   cursor: pointer;
   border-radius: 0px 0px 10px 10px;
   user-select: none;
+  transition: background-color 100ms linear;
 
   &_highlighted {
     &::before {

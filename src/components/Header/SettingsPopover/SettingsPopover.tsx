@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SidePopover, SidePopoverProps } from '../../SidePopover';
+import { FaPencilAlt } from "react-icons/fa";
 
-import s from './SettingsPopover.module.scss';
 import { useAppContext } from '../../../context';
 import { Button } from '../../Button/Button';
 
@@ -12,9 +12,7 @@ export const SettingsPopover = ({ ...sidePopoverProps }: Props): React.ReactElem
 
   return (
     <SidePopover {...sidePopoverProps}>
-      <div className={s.content}>
-        <Button onClick={switchNotation}>notation: {notation}</Button>
-      </div>
+      <Button before={<FaPencilAlt />} onClick={switchNotation}>Notation: {notation}</Button>
     </SidePopover>
   );
 };

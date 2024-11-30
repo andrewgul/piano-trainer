@@ -7,11 +7,12 @@ import clsx from 'clsx';
 import { IconButton } from '../IconButton/IconButton';
 
 export type SidePopoverProps = {
+  title: string;
   shown?: boolean;
   close?: VoidFunction;
 } & React.PropsWithChildren;
 
-export const SidePopover = ({ children, shown, close }: SidePopoverProps): React.ReactElement => {
+export const SidePopover = ({ children, shown, title, close }: SidePopoverProps): React.ReactElement => {
   const handleBackgroundClick = React.useCallback<React.MouseEventHandler>((event) => {
     event.stopPropagation();
     close?.();
@@ -25,8 +26,15 @@ export const SidePopover = ({ children, shown, close }: SidePopoverProps): React
     ReactDOM.createPortal(
       <div className={clsx(s.background, { [s.background_shown]: shown })} onClick={handleBackgroundClick}>
         <div className={clsx(s.popover, { [s.popover_shown]: shown })} onClick={handlePopoverClick}>
-          <IconButton className={s.close} onClick={close} icon="cross" />
-          {children}
+          <div className={s.header}>
+            <div className={s.title}>{title}</div>
+            <IconButton className={s.close} onClick={close} icon="cross" />
+          </div>
+          <div className={s['content-container']}>
+            <div className={s.content}>
+              {children}
+            </div>
+          </div>
         </div>
       </div>,
       document.getElementById(PORTALS.sidePopover)!,

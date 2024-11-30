@@ -30,6 +30,8 @@
   transition: transform 200ms linear;
   overflow-x: hidden;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 
   &_shown {
     pointer-events: all;
@@ -41,8 +43,28 @@
   }
 }
 
-.close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+.header {
+  height: 48px;
+  border-bottom: 0.5px solid $black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: $black;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 0 12px;
+  overflow-y: scroll;
+}
+
+.content {
+  padding-top: 12px;
 }

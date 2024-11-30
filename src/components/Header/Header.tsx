@@ -25,7 +25,7 @@ export const Header = (): React.ReactElement => {
           <IconButton onClick={openSettings} icon="gear" />
         </div>
       </div>
-      <SettingsPopover shown={settingsOpened} close={closeSettings} />
+      <SettingsPopover title="Settings" shown={settingsOpened} close={closeSettings} />
     </>
   );
 };

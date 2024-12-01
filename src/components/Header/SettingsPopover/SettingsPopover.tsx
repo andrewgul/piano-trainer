@@ -32,10 +32,10 @@ export const SettingsPopover = ({
   return (
     <SidePopover {...sidePopoverProps}>
       <div className={s.buttons}>
-        <Button before={<FaPencilAlt />} onClick={handleSwitchNotation}>
+        <Button content="start" before={<FaPencilAlt />} onClick={handleSwitchNotation}>
           Notation: {getNotationDisplay(notation)}
         </Button>
-        <Button before={<SiSharp />} onClick={handlesSwitchAlteredNotes}>
+        <Button content="start" before={<SiSharp />} onClick={handlesSwitchAlteredNotes}>
           Altered Notes: {getAlteredNotesDisplay(alteredNotes)  }
         </Button>
       </div>

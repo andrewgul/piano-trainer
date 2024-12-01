@@ -35,6 +35,16 @@
     width: 100%;
   }
 
+  &_content {
+    &_shrinked {
+      justify-content: space-between;
+    }
+
+    &_start {
+      justify-content: flex-start;
+    }
+  }
+
   &:hover {
     background-color: darken($white, 6%); 
   }

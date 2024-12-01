@@ -10,6 +10,9 @@ export const getNotatedNote = (note: Note, notation: Notation) => {
   return NOTES_SOLFEGE_NOTATION_MAP[note];
 };
 
+/**
+ * @todo fix both displayed notes
+ */
 export const getDisplayedNote = ( note: Note, notation: Notation, alteredNotes: AlteredNotes) => {
   if (!note.endsWith('#')) {
     return getNotatedNote(note, notation);

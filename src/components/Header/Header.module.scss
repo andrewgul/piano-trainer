@@ -1,8 +1,9 @@
 @import '../../styles/colors.scss';
+@import '../../vars/colors.scss';
 
 .header {
   width: 100%;
-  height: 72px;
+  height: $header-height;
   background-color: $white;
   position: fixed;
   top: 0;

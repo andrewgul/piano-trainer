@@ -9,9 +9,10 @@ type Props = {
   after?: React.ReactNode;
   stretched?: boolean;
   to?: string;
+  content?: 'shrinked' | 'start';
 } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & { selected?: boolean }
 
-export const Button = ({ selected, children, className, before, after, stretched, to, ...props }: Props): React.ReactElement => {
+export const Button = ({ selected, children, className, before, after, stretched, to, content: contentPosition = 'shrinked', ...props }: Props): React.ReactElement => {
   const content = React.useMemo<React.ReactNode>(() => {
     return (
       <>
@@ -24,14 +25,14 @@ export const Button = ({ selected, children, className, before, after, stretched
 
   if (to) {
     return (
-      <Link className={clsx(s.button, className, { [s.button_selected]: selected, [s.button_stretched]: stretched })} to={to}>
+      <Link className={clsx(s.button, s[`button_content_${contentPosition}`], className, { [s.button_selected]: selected, [s.button_stretched]: stretched })} to={to}>
         {content}
       </Link>
     )
   }
 
   return (
-    <button className={clsx(s.button, className, { [s.button_selected]: selected, [s.button_stretched]: stretched })} {...props}>
+    <button className={clsx(s.button, s[`button_content_${contentPosition}`], className, { [s.button_selected]: selected, [s.button_stretched]: stretched })} {...props}>
       {content}
     </button>
   );

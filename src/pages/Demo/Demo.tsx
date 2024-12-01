@@ -4,6 +4,8 @@ import { Button } from "@components/Button/Button";
 import { Note, NOTES, Scale, SCALES } from "@config/music";
 import { getDisplayedNote } from "@utils/getDisplayedNote";
 import { useAppContext } from "@components/App/context";
+import { FaTrashAlt } from "react-icons/fa";
+import { firstLetterToUppercase } from "@utils/firstLetterToUppercase";
 
 import s from "./Demo.module.scss";
 
@@ -39,7 +41,7 @@ export const Demo = (): React.ReactElement => {
               onClick={() => handleChangeScale(scale)}
               selected={selectedScale === scale}
             >
-              {scale}
+              {firstLetterToUppercase(scale)}
             </Button>
           ))}
         </div>
@@ -54,9 +56,11 @@ export const Demo = (): React.ReactElement => {
             </Button>
           ))}
         </div>
-        <div className={s['button-group']}>
-          <Button onClick={handleReset}>reset</Button>
-        </div>
+        {Boolean(selectedRootNote && selectedScale) && (
+          <div className={s['button-group']}>
+            <Button onClick={handleReset} after={<FaTrashAlt />}>Reset</Button>
+          </div>
+        )}
       </div>
       <Piano
         notation={notation}

@@ -29,7 +29,7 @@ export const Piano = ({ notation = 'letter', alteredNotes = '#', octaves = 2, st
     <PianoContext.Provider value={{ notation, alteredNotes }}>
       <div className={s.piano}>
         {Array.from({ length: octaves }, (_, index) => startOctave + index).map((octave) => (
-          <Octave key={octave} highlightedNotes={highlightedNotes} order={octave} />
+          <Octave key={octave} notesInChosenScale={highlightedNotes} order={octave} />
         ))}
       </div>
     </PianoContext.Provider>

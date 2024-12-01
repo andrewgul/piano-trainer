@@ -55,3 +55,5 @@ export const SCALES_MAP: Record<Scale, ScaleArray> = {
   major: MAJOR_SCALE,
   minor: MINOR_SCALE,
 };
+
+export const NOTE_PLAYING_DURATION = 0.25;

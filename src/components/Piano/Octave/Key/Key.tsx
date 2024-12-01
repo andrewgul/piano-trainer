@@ -16,6 +16,7 @@ type Props = {
   highlighted?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  playing?: boolean;
 };
 
 export const Key = ({
@@ -25,6 +26,7 @@ export const Key = ({
   highlighted = true,
   className,
   style,
+  playing,
 }: Props): React.ReactElement => {
   const { notation, alteredNotes } = usePianoContext();
   const [pressed, setPressed] = React.useState(false);
@@ -48,13 +50,19 @@ export const Key = ({
     onKeyUp: handlePressEnd,
   });
 
+  React.useEffect(() => {
+    if (playing) {
+      play();
+    }
+  }, [playing]);
+
   return (
     <div
       className={clsx(s.key, className, s[`key_${color}`], {
         [s.key_highlighted]: highlighted,
         // @todo refactor styles
-        [s.key_white_pressed]: color === "white" && pressed,
-        [s.key_black_pressed]: color === "black" && pressed,
+        [s.key_white_pressed]: color === "white" && (pressed || playing),
+        [s.key_black_pressed]: color === "black" && (pressed || playing),
       })}
       onClick={play}
       style={style}

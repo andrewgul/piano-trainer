@@ -1,18 +1,21 @@
+import { AlteredNotes } from "@types/AlteredNotes";
 import { Notation } from "@types/Notation";
 import * as React from 'react';
 
 type LocalStorageData = {
   notation: Notation;
+  'altered-notes': AlteredNotes;
 };
 
 type LocalStorageKeys = keyof LocalStorageData;
 
 const LOCAL_STORAGE_DEFAULT_VALUE: LocalStorageData = {
   notation: 'letter',
+  'altered-notes': '#'
 };
 
 export const useLocalStorage = () => {
-  const getValue = React.useCallback(<K extends LocalStorageKeys>(key: LocalStorageKeys) => {
+  const getValue = React.useCallback(<K extends LocalStorageKeys>(key: LocalStorageKeys): LocalStorageData[K] => {
     return (window.localStorage.getItem(key) || LOCAL_STORAGE_DEFAULT_VALUE[key]) as LocalStorageData[K];
   }, []);
 

@@ -1,8 +1,17 @@
+import { AlteredNotes } from "@types/AlteredNotes";
 import { Notation } from "@types/Notation";
 
-export const NOTATION_DISPLAY: Record<Notation, string> = {
+const NOTATION_DISPLAY: Record<Notation, string> = {
   letter: 'Letter (C, D, E...)',
   solfedge: 'Solfedge: (Do, Re, Mi...)'
 }
 
+const ALTERED_NOTES_DISPLAY: Record<AlteredNotes, string> = {
+  '#': 'Sharps (#)',
+  'b': 'Flats (b)',
+  both: 'Both (#, b)'
+};
+
 export const getNotationDisplay = (notation: Notation): string => NOTATION_DISPLAY[notation];
+
+export const getAlteredNotesDisplay = (alteredNotes: AlteredNotes): string => ALTERED_NOTES_DISPLAY[alteredNotes];

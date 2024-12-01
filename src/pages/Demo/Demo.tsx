@@ -2,14 +2,14 @@ import * as React from "react";
 import { Piano } from "@components/Piano";
 import { Button } from "@components/Button/Button";
 import { Note, NOTES, Scale, SCALES } from "@config/music";
-import { getNotatedNote } from "@utils/getNotatedNote";
+import { getDisplayedNote } from "@utils/getDisplayedNote";
 import { useAppContext } from "@components/App/context";
 
 import s from "./Demo.module.scss";
 
 
 export const Demo = (): React.ReactElement => {
-  const { notation } = useAppContext();
+  const { notation, alteredNotes } = useAppContext();
   const [selectedScale, setSelectedScale] = React.useState<Scale | null>(null);
   const [selectedRootNote, setSelectedRootNote] = React.useState<Note | null>(
     null
@@ -50,7 +50,7 @@ export const Demo = (): React.ReactElement => {
               onClick={() => handleChangeRootNote(note)}
               selected={selectedRootNote === note}
             >
-              {getNotatedNote(note, notation)}
+              {getDisplayedNote(note, notation, alteredNotes)}
             </Button>
           ))}
         </div>
@@ -62,6 +62,7 @@ export const Demo = (): React.ReactElement => {
         notation={notation}
         scale={selectedScale}
         rootNote={selectedRootNote}
+        alteredNotes={alteredNotes}
       />
     </div>
 

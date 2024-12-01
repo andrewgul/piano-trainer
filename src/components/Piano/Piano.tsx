@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Note, Scale } from '@config/music';
 import { getNotesInScale } from '@utils/getNotesInScale';
+import { AlteredNotes } from '@types/AlteredNotes';
 
 import s from './Piano.module.scss';
 import { Octave } from './Octave';
@@ -12,9 +13,10 @@ type Props = {
   scale?: Scale | null;
   octaves?: number;
   startOctave?: number;
+  alteredNotes?: AlteredNotes;
 };
 
-export const Piano = ({ notation = 'letter', octaves = 2, startOctave = 4, rootNote, scale }: Props): React.ReactElement => {
+export const Piano = ({ notation = 'letter', alteredNotes = '#', octaves = 2, startOctave = 4, rootNote, scale }: Props): React.ReactElement => {
   const highlightedNotes = React.useMemo(() => {
     if (!rootNote || !scale) {
       return null;
@@ -24,7 +26,7 @@ export const Piano = ({ notation = 'letter', octaves = 2, startOctave = 4, rootN
   }, [rootNote, scale]);
 
   return (
-    <PianoContext.Provider value={{ notation }}>
+    <PianoContext.Provider value={{ notation, alteredNotes }}>
       <div className={s.piano}>
         {Array.from({ length: octaves }, (_, index) => startOctave + index).map((octave) => (
           <Octave key={octave} highlightedNotes={highlightedNotes} order={octave} />

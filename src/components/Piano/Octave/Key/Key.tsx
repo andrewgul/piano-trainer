@@ -4,7 +4,7 @@ import { playNote } from "@utils/playNote";
 import clsx from "clsx";
 import { MAP_KEYS_TO_KEYBOARD } from "@config/keyboard";
 import { useKey } from "@hooks/useKey";
-import { getNotatedNote } from "@utils/getNotatedNote";
+import { getDisplayedNote } from '@utils/getDisplayedNote';
 
 import s from "./Key.module.scss";
 import { usePianoContext } from "../../context";
@@ -26,7 +26,7 @@ export const Key = ({
   className,
   style,
 }: Props): React.ReactElement => {
-  const { notation } = usePianoContext();
+  const { notation, alteredNotes } = usePianoContext();
   const [pressed, setPressed] = React.useState(false);
 
   const play = React.useCallback(async () => {
@@ -65,7 +65,7 @@ export const Key = ({
       onTouchEnd={handlePressEnd}
     >
       <div className={clsx(s.value, s[`value_${color}`])}>
-        {getNotatedNote(value, notation)}
+        {getDisplayedNote(value, notation, alteredNotes)}
       </div>
     </div>
   );

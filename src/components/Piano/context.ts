@@ -1,10 +1,13 @@
+import { AlteredNotes } from '@types/AlteredNotes';
+import { Notation } from '@types/Notation';
 import * as React from 'react';
 
 type PianoContextValue = {
-  notation: 'letter' | 'solfedge';
+  notation: Notation;
+  alteredNotes: AlteredNotes;
 };
 
-export const PianoContext = React.createContext<PianoContextValue>({ notation: 'letter' });
+export const PianoContext = React.createContext<PianoContextValue>({ notation: 'letter', alteredNotes: '#' });
 
 export const usePianoContext = () => {
   const context = React.useContext(PianoContext);

@@ -7,9 +7,9 @@ const NOTATION_DISPLAY: Record<Notation, string> = {
 }
 
 const ALTERED_NOTES_DISPLAY: Record<AlteredNotes, string> = {
-  '#': 'Sharps (#)',
-  'b': 'Flats (b)',
-  both: 'Both (#, b)'
+  '#': 'Sharps (♯)',
+  'b': 'Flats (♭)',
+  both: 'Both (♯, ♭)'
 };
 
 export const getNotationDisplay = (notation: Notation): string => NOTATION_DISPLAY[notation];

@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Note, Scale } from '@config/music';
 import { getNotesInScale } from '@utils/getNotesInScale';
-import { AlteredNotes } from '@types/AlteredNotes';
+
 
 import s from './Piano.module.scss';
 import { Octave } from './Octave';
 import { PianoContext } from './context';
+
+import { AlteredNotes } from '@/typings/AlteredNotes';
 
 type Props = {
   notation?: 'letter' | 'solfedge';

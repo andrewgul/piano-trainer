@@ -1,5 +1,5 @@
-import { AlteredNotes } from "@types/AlteredNotes";
-import { Notation } from "@types/Notation";
+import { AlteredNotes } from "@/typings/AlteredNotes";
+import { Notation } from "@/typings/Notation";
 
 const NOTATION_DISPLAY: Record<Notation, string> = {
   letter: 'Letter (C, D, E...)',

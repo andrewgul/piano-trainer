@@ -5,10 +5,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from '@pages/Home';
 import { Header } from '@components/Header';
 import { PATHS } from '@config/paths';
-import { AlteredNotes } from '@types/AlteredNotes';
-import { Notation } from '@types/Notation';
 
 import { AppContext, useCreateAppContext } from './context';
+
+import { AlteredNotes } from '@/typings/AlteredNotes';
+import { Notation } from '@/typings/Notation';
+
 
 import './main.scss';
 

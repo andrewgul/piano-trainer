@@ -1,6 +1,7 @@
-import { AlteredNotes } from "@types/AlteredNotes";
-import { Notation } from "@types/Notation";
 import * as React from 'react';
+
+import { AlteredNotes } from "@/typings/AlteredNotes";
+import { Notation } from "@/typings/Notation";
 
 type LocalStorageData = {
   notation: Notation;

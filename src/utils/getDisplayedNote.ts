@@ -1,6 +1,7 @@
 import { Note, NOTES, NOTES_SOLFEGE_NOTATION_MAP } from "@config/music";
-import { AlteredNotes } from "@types/AlteredNotes";
-import { Notation } from "@types/Notation";
+
+import { AlteredNotes } from "@/typings/AlteredNotes";
+import { Notation } from "@/typings/Notation";
 
 export const getNotatedNote = (note: Note, notation: Notation) => {
   if (notation === 'letter') {

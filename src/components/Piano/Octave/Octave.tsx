@@ -49,35 +49,37 @@ export const Octave = ({
     if (currentlyPlayingNotes) {
       playNotesInChosenScale();
     }
-  }, [currentlyPlayingNotes]);
+  }, [currentlyPlayingNotes, playNotesInChosenScale]);
 
   return (
-    <div className={s.octave}>
+    <>
       <Button onClick={handlePlayScale}>play scale</Button>
-      {NOTES.map((note) => {
-        const color = getKeyColor(note);
+      <div className={s.octave}>
+        {NOTES.map((note) => {
+          const color = getKeyColor(note);
 
-        return (
-          <Key
-            octave={order}
-            highlighted={
-              notesInChosenScale ? notesInChosenScale.includes(note) : false
-            }
-            key={note}
-            className={clsx(s.key, s[`key_${color}`])}
-            value={note}
-            color={color}
-            style={
-              color === "black"
-                ? ({
-                    "--offset": countWhiteNotesBefore(note),
-                  } as React.CSSProperties)
-                : undefined
-            }
-            playing={currentlyPlayingNote === note}
-          />
-        );
-      })}
-    </div>
+          return (
+            <Key
+              octave={order}
+              highlighted={
+                notesInChosenScale ? notesInChosenScale.includes(note) : false
+              }
+              key={note}
+              className={clsx(s.key, s[`key_${color}`])}
+              value={note}
+              color={color}
+              style={
+                color === "black"
+                  ? ({
+                      "--offset": countWhiteNotesBefore(note),
+                    } as React.CSSProperties)
+                  : undefined
+              }
+              playing={currentlyPlayingNote === note}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };

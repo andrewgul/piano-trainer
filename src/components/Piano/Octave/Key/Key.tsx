@@ -54,7 +54,7 @@ export const Key = ({
     if (playing) {
       play();
     }
-  }, [playing]);
+  }, [playing, play]);
 
   return (
     <div

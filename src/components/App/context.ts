@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Notation } from "@types/Notation";
-import { AlteredNotes } from '@types/AlteredNotes';
+
+import { Notation } from "@/typings/Notation";
+import { AlteredNotes } from '@/typings/AlteredNotes';
 
 type SwitchFunction<V> = (callback: (newValue: V) => void ) => void;
 

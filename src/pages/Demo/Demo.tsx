@@ -6,6 +6,9 @@ import { getDisplayedNote } from "@utils/getDisplayedNote";
 import { useAppContext } from "@components/App/context";
 import { FaTrashAlt } from "react-icons/fa";
 import { firstLetterToUppercase } from "@utils/firstLetterToUppercase";
+import { FaPlay } from "react-icons/fa";
+import { FaEllipsisH } from "react-icons/fa";
+import { usePlayScale } from "@hooks/usePlayScale";
 
 import s from "./Demo.module.scss";
 
@@ -16,6 +19,8 @@ export const Demo = (): React.ReactElement => {
   const [selectedRootNote, setSelectedRootNote] = React.useState<Note | null>(
     null
   );
+
+  const { play: playScale, playingNote, playing } = usePlayScale({ note: selectedRootNote, scale: selectedScale });
 
   const handleChangeScale = React.useCallback((newScale: Scale | null) => {
     setSelectedScale((oldScale) => (oldScale === newScale ? null : newScale));
@@ -38,6 +43,7 @@ export const Demo = (): React.ReactElement => {
         <div className={s["button-group"]}>
           {SCALES.map((scale) => (
             <Button
+              key={scale}
               onClick={() => handleChangeScale(scale)}
               selected={selectedScale === scale}
             >
@@ -58,6 +64,7 @@ export const Demo = (): React.ReactElement => {
         </div>
         {Boolean(selectedRootNote && selectedScale) && (
           <div className={s['button-group']}>
+            <Button onClick={playScale} after={playing ? <FaEllipsisH /> : <FaPlay />}>{playing ? 'Playing' : 'Play'}</Button>
             <Button onClick={handleReset} after={<FaTrashAlt />}>Reset</Button>
           </div>
         )}
@@ -67,6 +74,7 @@ export const Demo = (): React.ReactElement => {
         scale={selectedScale}
         rootNote={selectedRootNote}
         alteredNotes={alteredNotes}
+        playingNote={playingNote}
       />
     </div>
 

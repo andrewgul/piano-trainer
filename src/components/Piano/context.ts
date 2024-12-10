@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NoteWithOctave } from '@config/music';
 
 import { AlteredNotes } from '@/typings/AlteredNotes';
 import { Notation } from '@/typings/Notation';
@@ -6,6 +7,7 @@ import { Notation } from '@/typings/Notation';
 type PianoContextValue = {
   notation: Notation;
   alteredNotes: AlteredNotes;
+  playingNote?: NoteWithOctave | null;
 };
 
 export const PianoContext = React.createContext<PianoContextValue>({ notation: 'letter', alteredNotes: '#' });

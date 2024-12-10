@@ -33,6 +33,8 @@ export const NOTES_SOLFEGE_NOTATION_MAP: Record<Note, string> = {
 
 export type Note = (typeof NOTES)[number];
 
+export type NoteWithOctave = { note: Note; octave: number };
+
 export type KeyColor = 'black' | 'white';
 
 export const SCALES = ['major', 'minor'] as const;

@@ -16,7 +16,6 @@ type Props = {
   highlighted?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  playing?: boolean;
 };
 
 export const Key = ({
@@ -26,10 +25,13 @@ export const Key = ({
   highlighted = true,
   className,
   style,
-  playing,
 }: Props): React.ReactElement => {
   const { notation, alteredNotes } = usePianoContext();
   const [pressed, setPressed] = React.useState(false);
+
+  const { playingNote } = usePianoContext();
+
+  const playing = value === playingNote?.note && octave === playingNote.octave;
 
   const play = React.useCallback(async () => {
     playNote(value, { octave });

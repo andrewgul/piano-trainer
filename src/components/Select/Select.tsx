@@ -30,7 +30,7 @@ export const Select = <O extends Option>({
 
   const selectedOption = React.useMemo(
     () => options.find((option) => option.key === selectedKey),
-    [selectedKey],
+    [selectedKey, options],
   );
 
   const handleSelect = React.useCallback(
@@ -43,7 +43,7 @@ export const Select = <O extends Option>({
 
       closeOptions();
     },
-    [onSelect, closeOptions],
+    [onSelect, closeOptions, selectedKey],
   );
 
   return (

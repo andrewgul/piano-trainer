@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "yay": "yarn prettier && yarn lint:fix",
     "prettier": "prettier --write .",
     "preview": "vite preview"
   },

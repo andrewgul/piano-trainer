@@ -1,16 +1,33 @@
 import * as React from 'react';
 import { Piano } from '@components/Piano';
 import { Button } from '@components/Button/Button';
-import { Note, NOTES, Scale, SCALES } from '@config/music';
-import { getDisplayedNote } from '@utils/getDisplayedNote';
+import { Note, NOTES, Scale } from '@config/music';
 import { useAppContext } from '@components/App/context';
 import { FaTrashAlt } from 'react-icons/fa';
-import { firstLetterToUppercase } from '@utils/firstLetterToUppercase';
 import { FaPlay } from 'react-icons/fa';
 import { FaEllipsisH } from 'react-icons/fa';
 import { usePlayScale } from '@hooks/usePlayScale';
+import { Select } from '@components/Select';
+import { Option } from '@typings/Option';
+import { Container } from '@components/Container';
 
 import s from './Demo.module.scss';
+
+const SCALE_OPTIONS = [
+  {
+    label: 'Major',
+    key: 'major',
+  },
+  {
+    label: 'Minor',
+    key: 'minor',
+  },
+] satisfies Option<Scale>[];
+
+const ROOT_NOTE_OPTIONS: Option<Note>[] = NOTES.map((note) => ({
+  label: note,
+  key: note,
+}));
 
 export const Demo = (): React.ReactElement => {
   const { notation, alteredNotes } = useAppContext();
@@ -25,60 +42,57 @@ export const Demo = (): React.ReactElement => {
     playing,
   } = usePlayScale({ note: selectedRootNote, scale: selectedScale });
 
-  const handleChangeScale = React.useCallback((newScale: Scale | null) => {
-    setSelectedScale((oldScale) => (oldScale === newScale ? null : newScale));
-  }, []);
-
-  const handleChangeRootNote = React.useCallback((newRootNote: Note) => {
-    setSelectedRootNote((oldRootNote) =>
-      oldRootNote === newRootNote ? null : newRootNote,
-    );
-  }, []);
-
   const handleReset = React.useCallback(() => {
     setSelectedScale(null);
     setSelectedRootNote(null);
   }, []);
 
+  const disableControls = (!selectedRootNote && !selectedScale) || playing;
+
   return (
-    <div className={s.container}>
-      <div className={s.control}>
-        <div className={s['button-group']}>
-          {SCALES.map((scale) => (
-            <Button
-              key={scale}
-              onClick={() => handleChangeScale(scale)}
-              selected={selectedScale === scale}
-            >
-              {firstLetterToUppercase(scale)}
-            </Button>
-          ))}
-        </div>
-        <div className={s['button-group']}>
-          {NOTES.map((note) => (
-            <Button
-              key={note}
-              onClick={() => handleChangeRootNote(note)}
-              selected={selectedRootNote === note}
-            >
-              {getDisplayedNote(note, notation, alteredNotes)}
-            </Button>
-          ))}
-        </div>
-        {Boolean(selectedRootNote && selectedScale) && (
-          <div className={s['button-group']}>
-            <Button
-              onClick={playScale}
-              after={playing ? <FaEllipsisH /> : <FaPlay />}
-            >
-              {playing ? 'Playing' : 'Play'}
-            </Button>
-            <Button onClick={handleReset} after={<FaTrashAlt />}>
-              Reset
-            </Button>
-          </div>
-        )}
-      </div>
+    <Container
+      className={s.container}
+      direction="vertical"
+      align="center"
+      justify="center"
+    >
+      <Container
+        className={s.controls}
+        direction="vertical"
+        spacing="l"
+        align="stretch"
+      >
+        <Select
+          label="Root Note"
+          options={ROOT_NOTE_OPTIONS}
+          selectedKey={selectedRootNote}
+          onSelect={setSelectedRootNote}
+        />
+        <Select
+          label="Scale"
+          options={SCALE_OPTIONS}
+          selectedKey={selectedScale}
+          onSelect={setSelectedScale}
+        />
+        <Container align="center" justify="space-between">
+          <Button
+            before={playing ? <FaEllipsisH /> : <FaPlay />}
+            onClick={playScale}
+            disabled={disableControls}
+            stretched
+          >
+            {playing ? 'Playing' : 'Play'}
+          </Button>
+          <Button
+            before={<FaTrashAlt />}
+            onClick={handleReset}
+            disabled={disableControls}
+            stretched
+          >
+            Reset
+          </Button>
+        </Container>
+      </Container>
       <Piano
         notation={notation}
         scale={selectedScale}
@@ -86,6 +100,6 @@ export const Demo = (): React.ReactElement => {
         alteredNotes={alteredNotes}
         playingNote={playingNote}
       />
-    </div>
+    </Container>
   );
 };

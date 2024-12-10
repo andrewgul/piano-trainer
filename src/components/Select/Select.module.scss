@@ -1,0 +1,74 @@
+@import '../../styles/typo.scss';
+@import '../../styles/spacing.scss';
+@import '../../styles/colors.scss';
+
+.wrapper {
+  width: 100%;
+}
+
+.label {
+  display: block;
+  padding-left: $spacing-xl;
+  margin-bottom: $spacing-s;
+
+  @include typo-label;
+}
+
+.selection {
+  padding: $spacing-m $spacing-xl;
+  border-radius: 12px;
+  background-color: $white;
+  color: $black;
+  cursor: pointer;
+
+  @include typo-text;
+}
+
+.options-root {
+  position: relative;
+  width: 100%;
+}
+
+.options {
+  position: absolute;
+  z-index: 10;
+  margin-top: $spacing-m;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.75);
+  pointer-events: none;
+  transition:
+    opacity 250ms ease-in-out,
+    transform 250ms ease-in-out;
+
+  &_visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+  }
+}
+
+.option {
+  padding: $spacing-m $spacing-xl;
+  background-color: $white;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include typo-text;
+
+  &:hover {
+    background-color: darken($white, 6%);
+  }
+
+  &_selected {
+    font-weight: 700;
+  }
+}

@@ -1,11 +1,12 @@
 @import '../../styles/colors.scss';
+@import '../../styles/spacing.scss';
+@import '../../styles/typo.scss';
 
 .button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  font-size: 14px;
+  justify-content: space-around;
+  padding: $spacing-m $spacing-xl;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
@@ -23,6 +24,8 @@
   justify-content: space-between;
   gap: 12px;
 
+  @include typo-text;
+
   &_selected {
     &::before {
       content: '';
@@ -34,7 +37,6 @@
   }
 
   &_stretched {
-    display: block;
     width: 100%;
   }
 
@@ -57,7 +59,7 @@
   }
 
   &:disabled {
-    background-color: $gray-light;
+    background-color: darken($white, 2%);
     color: $gray-dark;
     cursor: not-allowed;
   }

@@ -1,0 +1,77 @@
+@import '../../styles/spacing.scss';
+
+.container {
+  display: flex;
+
+  &_direction {
+    &_horizontal {
+      flex-direction: row;
+    }
+
+    &_vertical {
+      flex-direction: column;
+    }
+  }
+
+  &_spacing {
+    &_s {
+      gap: $spacing-s;
+    }
+
+    &_m {
+      gap: $spacing-m;
+    }
+
+    &_l {
+      gap: $spacing-l;
+    }
+
+    &_xl {
+      gap: $spacing-xl;
+    }
+
+    &_xxl {
+      gap: $spacing-xxl;
+    }
+  }
+
+  &_align {
+    &_stretch {
+      align-items: stretch;
+    }
+
+    &_start {
+      align-items: center;
+    }
+
+    &_center {
+      align-items: center;
+    }
+
+    &_end {
+      align-items: end;
+    }
+  }
+
+  &_justify {
+    &_stretch {
+      justify-content: stretch;
+    }
+
+    &_start {
+      justify-content: flex-start;
+    }
+
+    &_center {
+      justify-content: center;
+    }
+
+    &_end {
+      justify-content: flex-end;
+    }
+
+    &_space-between {
+      justify-content: space-between;
+    }
+  }
+}

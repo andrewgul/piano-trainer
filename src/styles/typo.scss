@@ -1,0 +1,10 @@
+@mixin typo-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@mixin typo-label {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 500;
+}

@@ -10,7 +10,10 @@ type PianoContextValue = {
   playingNote?: NoteWithOctave | null;
 };
 
-export const PianoContext = React.createContext<PianoContextValue>({ notation: 'letter', alteredNotes: '#' });
+export const PianoContext = React.createContext<PianoContextValue>({
+  notation: 'letter',
+  alteredNotes: '#',
+});
 
 export const usePianoContext = () => {
   const context = React.useContext(PianoContext);

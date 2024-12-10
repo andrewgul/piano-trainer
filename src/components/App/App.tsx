@@ -11,9 +11,7 @@ import { AppContext, useCreateAppContext } from './context';
 import { AlteredNotes } from '@/typings/AlteredNotes';
 import { Notation } from '@/typings/Notation';
 
-
 import './main.scss';
-
 
 export const App = (): React.ReactElement => {
   const { getValue: getLocalStorageValue } = useLocalStorage();
@@ -36,5 +34,5 @@ export const App = (): React.ReactElement => {
         </Routes>
       </BrowserRouter>
     </AppContext.Provider>
-  )
+  );
 };

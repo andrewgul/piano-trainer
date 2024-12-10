@@ -1,4 +1,9 @@
-import { Note, NOTE_PLAYING_DURATION, NoteWithOctave, Scale } from '@config/music';
+import {
+  Note,
+  NOTE_PLAYING_DURATION,
+  NoteWithOctave,
+  Scale,
+} from '@config/music';
 import { getNotesInScale } from '@utils/getNotesInScale';
 import * as React from 'react';
 
@@ -19,9 +24,9 @@ export const usePlayScale = ({ note, scale }: Params) => {
 
       return [
         ...notes,
-        { 
+        {
           note,
-          octave: OCTAVE + 1
+          octave: OCTAVE + 1,
         },
       ];
     }
@@ -29,25 +34,32 @@ export const usePlayScale = ({ note, scale }: Params) => {
     return [];
   }, [note, scale]);
 
-  const [playingNote, setCurrentlyPlayingNote] = React.useState<NoteWithOctave | null>(null);
+  const [playingNote, setCurrentlyPlayingNote] =
+    React.useState<NoteWithOctave | null>(null);
 
-  const proceed = React.useCallback((notes: NoteWithOctave[]) => {
-    if (playingNote) {
-      return;
-    }
+  const proceed = React.useCallback(
+    (notes: NoteWithOctave[]) => {
+      if (playingNote) {
+        return;
+      }
 
-    notes.forEach((note, index) => {
-      setTimeout(() => {
-        setCurrentlyPlayingNote(note);
+      notes.forEach((note, index) => {
+        setTimeout(
+          () => {
+            setCurrentlyPlayingNote(note);
 
-        if (notes.indexOf(note) + 1 === notes.length) {
-          setTimeout(() => {
-            setCurrentlyPlayingNote(null);
-          }, 10);
-        }
-      }, NOTE_PLAYING_DURATION * 1000 * index);
-    });
-  }, [playingNote]);
+            if (notes.indexOf(note) + 1 === notes.length) {
+              setTimeout(() => {
+                setCurrentlyPlayingNote(null);
+              }, 10);
+            }
+          },
+          NOTE_PLAYING_DURATION * 1000 * index,
+        );
+      });
+    },
+    [playingNote],
+  );
 
   const play = React.useCallback(() => {
     proceed(notesWithOctaveInScale);

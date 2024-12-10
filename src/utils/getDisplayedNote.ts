@@ -1,7 +1,7 @@
-import { Note, NOTES, NOTES_SOLFEGE_NOTATION_MAP } from "@config/music";
+import { Note, NOTES, NOTES_SOLFEGE_NOTATION_MAP } from '@config/music';
 
-import { AlteredNotes } from "@/typings/AlteredNotes";
-import { Notation } from "@/typings/Notation";
+import { AlteredNotes } from '@/typings/AlteredNotes';
+import { Notation } from '@/typings/Notation';
 
 export const getNotatedNote = (note: Note, notation: Notation) => {
   if (notation === 'letter') {
@@ -14,7 +14,11 @@ export const getNotatedNote = (note: Note, notation: Notation) => {
 /**
  * @todo fix both displayed notes
  */
-export const getDisplayedNote = ( note: Note, notation: Notation, alteredNotes: AlteredNotes) => {
+export const getDisplayedNote = (
+  note: Note,
+  notation: Notation,
+  alteredNotes: AlteredNotes,
+) => {
   if (!note.endsWith('#')) {
     return getNotatedNote(note, notation);
   }
@@ -25,11 +29,11 @@ export const getDisplayedNote = ( note: Note, notation: Notation, alteredNotes: 
 
   const alteredNoteIndex = NOTES.indexOf(note);
   const nextNaturalNoteIndex = alteredNoteIndex + 1;
-  const alteredNoteAlternativeValue = `${getNotatedNote(NOTES[nextNaturalNoteIndex], notation)}♭`
+  const alteredNoteAlternativeValue = `${getNotatedNote(NOTES[nextNaturalNoteIndex], notation)}♭`;
 
   if (alteredNotes === 'b') {
     return alteredNoteAlternativeValue;
   }
 
-  return `${note} / ${alteredNoteAlternativeValue}`
+  return `${note} / ${alteredNoteAlternativeValue}`;
 };

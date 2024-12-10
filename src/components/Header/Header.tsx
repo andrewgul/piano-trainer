@@ -15,7 +15,7 @@ export const Header = (): React.ReactElement => {
   }, []);
 
   const closeSettings = React.useCallback(() => {
-    setSettingsOpened(false)
+    setSettingsOpened(false);
   }, []);
 
   return (
@@ -29,7 +29,11 @@ export const Header = (): React.ReactElement => {
           <IconButton onClick={openSettings} icon="gear" />
         </div>
       </div>
-      <SettingsPopover title="Settings" shown={settingsOpened} close={closeSettings} />
+      <SettingsPopover
+        title="Settings"
+        shown={settingsOpened}
+        close={closeSettings}
+      />
     </>
   );
 };

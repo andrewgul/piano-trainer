@@ -1,13 +1,13 @@
-import * as React from "react";
-import { KeyColor, Note } from "@config/music";
-import { playNote } from "@utils/playNote";
-import clsx from "clsx";
-import { MAP_KEYS_TO_KEYBOARD } from "@config/keyboard";
-import { useKey } from "@hooks/useKey";
+import * as React from 'react';
+import { KeyColor, Note } from '@config/music';
+import { playNote } from '@utils/playNote';
+import clsx from 'clsx';
+import { MAP_KEYS_TO_KEYBOARD } from '@config/keyboard';
+import { useKey } from '@hooks/useKey';
 import { getDisplayedNote } from '@utils/getDisplayedNote';
 
-import s from "./Key.module.scss";
-import { usePianoContext } from "../../context";
+import s from './Key.module.scss';
+import { usePianoContext } from '../../context';
 
 type Props = {
   value: Note;
@@ -63,8 +63,8 @@ export const Key = ({
       className={clsx(s.key, className, s[`key_${color}`], {
         [s.key_highlighted]: highlighted,
         // @todo refactor styles
-        [s.key_white_pressed]: color === "white" && (pressed || playing),
-        [s.key_black_pressed]: color === "black" && (pressed || playing),
+        [s.key_white_pressed]: color === 'white' && (pressed || playing),
+        [s.key_black_pressed]: color === 'black' && (pressed || playing),
       })}
       onClick={play}
       style={style}

@@ -1,26 +1,29 @@
-import * as React from "react";
-import { Piano } from "@components/Piano";
-import { Button } from "@components/Button/Button";
-import { Note, NOTES, Scale, SCALES } from "@config/music";
-import { getDisplayedNote } from "@utils/getDisplayedNote";
-import { useAppContext } from "@components/App/context";
-import { FaTrashAlt } from "react-icons/fa";
-import { firstLetterToUppercase } from "@utils/firstLetterToUppercase";
-import { FaPlay } from "react-icons/fa";
-import { FaEllipsisH } from "react-icons/fa";
-import { usePlayScale } from "@hooks/usePlayScale";
+import * as React from 'react';
+import { Piano } from '@components/Piano';
+import { Button } from '@components/Button/Button';
+import { Note, NOTES, Scale, SCALES } from '@config/music';
+import { getDisplayedNote } from '@utils/getDisplayedNote';
+import { useAppContext } from '@components/App/context';
+import { FaTrashAlt } from 'react-icons/fa';
+import { firstLetterToUppercase } from '@utils/firstLetterToUppercase';
+import { FaPlay } from 'react-icons/fa';
+import { FaEllipsisH } from 'react-icons/fa';
+import { usePlayScale } from '@hooks/usePlayScale';
 
-import s from "./Demo.module.scss";
-
+import s from './Demo.module.scss';
 
 export const Demo = (): React.ReactElement => {
   const { notation, alteredNotes } = useAppContext();
   const [selectedScale, setSelectedScale] = React.useState<Scale | null>(null);
   const [selectedRootNote, setSelectedRootNote] = React.useState<Note | null>(
-    null
+    null,
   );
 
-  const { play: playScale, playingNote, playing } = usePlayScale({ note: selectedRootNote, scale: selectedScale });
+  const {
+    play: playScale,
+    playingNote,
+    playing,
+  } = usePlayScale({ note: selectedRootNote, scale: selectedScale });
 
   const handleChangeScale = React.useCallback((newScale: Scale | null) => {
     setSelectedScale((oldScale) => (oldScale === newScale ? null : newScale));
@@ -28,7 +31,7 @@ export const Demo = (): React.ReactElement => {
 
   const handleChangeRootNote = React.useCallback((newRootNote: Note) => {
     setSelectedRootNote((oldRootNote) =>
-      oldRootNote === newRootNote ? null : newRootNote
+      oldRootNote === newRootNote ? null : newRootNote,
     );
   }, []);
 
@@ -40,7 +43,7 @@ export const Demo = (): React.ReactElement => {
   return (
     <div className={s.container}>
       <div className={s.control}>
-        <div className={s["button-group"]}>
+        <div className={s['button-group']}>
           {SCALES.map((scale) => (
             <Button
               key={scale}
@@ -51,7 +54,7 @@ export const Demo = (): React.ReactElement => {
             </Button>
           ))}
         </div>
-        <div className={s["button-group"]}>
+        <div className={s['button-group']}>
           {NOTES.map((note) => (
             <Button
               key={note}
@@ -64,8 +67,15 @@ export const Demo = (): React.ReactElement => {
         </div>
         {Boolean(selectedRootNote && selectedScale) && (
           <div className={s['button-group']}>
-            <Button onClick={playScale} after={playing ? <FaEllipsisH /> : <FaPlay />}>{playing ? 'Playing' : 'Play'}</Button>
-            <Button onClick={handleReset} after={<FaTrashAlt />}>Reset</Button>
+            <Button
+              onClick={playScale}
+              after={playing ? <FaEllipsisH /> : <FaPlay />}
+            >
+              {playing ? 'Playing' : 'Play'}
+            </Button>
+            <Button onClick={handleReset} after={<FaTrashAlt />}>
+              Reset
+            </Button>
           </div>
         )}
       </div>
@@ -77,6 +87,5 @@ export const Demo = (): React.ReactElement => {
         playingNote={playingNote}
       />
     </div>
-
   );
 };

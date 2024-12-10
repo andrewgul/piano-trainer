@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { IconType } from 'react-icons';
 import { FaTimes } from 'react-icons/fa';
-import { BsGearWideConnected } from "react-icons/bs";
-import { FaGithub } from "react-icons/fa";
+import { BsGearWideConnected } from 'react-icons/bs';
+import { FaGithub } from 'react-icons/fa';
 import clsx from 'clsx';
 
 import s from './IconButton.module.scss';
@@ -15,9 +15,17 @@ const MAP_ICON: Record<Icon, IconType> = {
   github: FaGithub,
 };
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & { icon: Icon, link?: string };
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  icon: Icon;
+  link?: string;
+};
 
-export const IconButton = ({ icon, className, link, ...props }: Props): React.ReactElement => {
+export const IconButton = ({
+  icon,
+  className,
+  link,
+  ...props
+}: Props): React.ReactElement => {
   const Icon = MAP_ICON[icon];
 
   if (link) {
@@ -25,7 +33,7 @@ export const IconButton = ({ icon, className, link, ...props }: Props): React.Re
       <a className={clsx(s.button, className)} href={link} target="_blank">
         <Icon />
       </a>
-    )
+    );
   }
 
   return (

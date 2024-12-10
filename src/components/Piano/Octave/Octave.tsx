@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Note, NOTES } from "@config/music";
-import { getKeyColor } from "@utils/getKeyColor";
-import clsx from "clsx";
-import { countWhiteNotesBefore } from "@utils/countWhiteNotesBefore";
+import * as React from 'react';
+import { Note, NOTES } from '@config/music';
+import { getKeyColor } from '@utils/getKeyColor';
+import clsx from 'clsx';
+import { countWhiteNotesBefore } from '@utils/countWhiteNotesBefore';
 
-import { Key } from "./Key";
-import s from "./Octave.module.scss";
+import { Key } from './Key';
+import s from './Octave.module.scss';
 
 type Props = {
   order?: number;
@@ -32,9 +32,9 @@ export const Octave = ({
             value={note}
             color={color}
             style={
-              color === "black"
+              color === 'black'
                 ? ({
-                    "--offset": countWhiteNotesBefore(note),
+                    '--offset': countWhiteNotesBefore(note),
                   } as React.CSSProperties)
                 : undefined
             }

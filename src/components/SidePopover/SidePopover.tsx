@@ -12,32 +12,45 @@ export type SidePopoverProps = {
   close?: VoidFunction;
 } & React.PropsWithChildren;
 
-export const SidePopover = ({ children, shown, title, close }: SidePopoverProps): React.ReactElement => {
-  const handleBackgroundClick = React.useCallback<React.MouseEventHandler>((event) => {
-    event.stopPropagation();
-    close?.();
-  }, [close]);
+export const SidePopover = ({
+  children,
+  shown,
+  title,
+  close,
+}: SidePopoverProps): React.ReactElement => {
+  const handleBackgroundClick = React.useCallback<React.MouseEventHandler>(
+    (event) => {
+      event.stopPropagation();
+      close?.();
+    },
+    [close],
+  );
 
-  const handlePopoverClick = React.useCallback<React.MouseEventHandler>((event) => {
-    event.stopPropagation();
-  }, []);
+  const handlePopoverClick = React.useCallback<React.MouseEventHandler>(
+    (event) => {
+      event.stopPropagation();
+    },
+    [],
+  );
 
-  return (
-    ReactDOM.createPortal(
-      <div className={clsx(s.background, { [s.background_shown]: shown })} onClick={handleBackgroundClick}>
-        <div className={clsx(s.popover, { [s.popover_shown]: shown })} onClick={handlePopoverClick}>
-          <div className={s.header}>
-            <div className={s.title}>{title}</div>
-            <IconButton className={s.close} onClick={close} icon="cross" />
-          </div>
-          <div className={s['content-container']}>
-            <div className={s.content}>
-              {children}
-            </div>
-          </div>
+  return ReactDOM.createPortal(
+    <div
+      className={clsx(s.background, { [s.background_shown]: shown })}
+      onClick={handleBackgroundClick}
+    >
+      <div
+        className={clsx(s.popover, { [s.popover_shown]: shown })}
+        onClick={handlePopoverClick}
+      >
+        <div className={s.header}>
+          <div className={s.title}>{title}</div>
+          <IconButton className={s.close} onClick={close} icon="cross" />
         </div>
-      </div>,
-      document.getElementById(PORTALS.sidePopover)!,
-    )
+        <div className={s['content-container']}>
+          <div className={s.content}>{children}</div>
+        </div>
+      </div>
+    </div>,
+    document.getElementById(PORTALS.sidePopover)!,
   );
 };

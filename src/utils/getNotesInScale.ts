@@ -1,10 +1,10 @@
-import { Note, NOTES, NoteWithOctave, Scale, SCALES_MAP } from "@config/music";
+import { Note, NOTES, NoteWithOctave, Scale, SCALES_MAP } from '@config/music';
 
 export const getNotesInScale = <WO extends boolean = false>(
   rootNote: Note,
   scale: Scale,
   withOctave: WO = false as WO,
-  startOctave = 4
+  startOctave = 4,
 ): WO extends true ? NoteWithOctave[] : Note[] => {
   const indexOfRootNote = NOTES.indexOf(rootNote);
   const rightArray = NOTES.slice(indexOfRootNote);

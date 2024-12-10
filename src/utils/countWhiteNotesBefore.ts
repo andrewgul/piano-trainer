@@ -14,4 +14,4 @@ export const countWhiteNotesBefore = (incomingNote: string) => {
   }
 
   return result;
-}
+};

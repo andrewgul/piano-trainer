@@ -5,6 +5,7 @@ import { useFlag } from '@hooks/useFlag';
 import clsx from 'clsx';
 import { MdClear } from 'react-icons/md';
 import { FaCaretDown } from 'react-icons/fa';
+import { useClickOutside } from '@hooks/useClickOutside';
 
 import s from './Select.module.scss';
 
@@ -26,6 +27,9 @@ export const Select = <O extends Option>({
   allowDeselect = true,
   onSelect,
 }: Props<O>): React.ReactElement => {
+  const optionsRef = React.useRef<HTMLDivElement>(null);
+  const selectRef = React.useRef<HTMLDivElement>(null);
+
   const {
     flag: showOptions,
     setFalse: closeOptions,
@@ -59,8 +63,10 @@ export const Select = <O extends Option>({
     [closeOptions, onSelect],
   );
 
+  useClickOutside(optionsRef, closeOptions, selectRef);
+
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={selectRef}>
       {label && <span className={s.label}>{label}</span>}
       <div
         className={clsx(s.selection, selectedOption && s.selection_selected)}
@@ -82,7 +88,10 @@ export const Select = <O extends Option>({
         )}
       </div>
       <div className={s['options-root']}>
-        <div className={clsx(s.options, showOptions && s.options_visible)}>
+        <div
+          className={clsx(s.options, showOptions && s.options_visible)}
+          ref={optionsRef}
+        >
           {options.map((option) => (
             // @todo component
             <div

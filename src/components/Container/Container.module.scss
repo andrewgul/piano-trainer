@@ -14,6 +14,10 @@
   }
 
   &_spacing {
+    &_zero {
+      gap: 0;
+    }
+
     &_s {
       gap: $spacing-s;
     }
@@ -72,6 +76,32 @@
 
     &_space-between {
       justify-content: space-between;
+    }
+  }
+
+  &_padding {
+    &_zero {
+      padding: 0;
+    }
+
+    &_s {
+      padding: $spacing-s;
+    }
+
+    &_m {
+      padding: $spacing-m;
+    }
+
+    &_l {
+      padding: $spacing-l;
+    }
+
+    &_xl {
+      padding: $spacing-xl;
+    }
+
+    &_xxl {
+      padding: $spacing-xxl;
     }
   }
 }

@@ -11,8 +11,18 @@ type AxisPosition = 'start' | 'center' | 'end' | 'stretch';
 
 type Props = React.PropsWithChildren<{
   direction?: Direction;
-  spacing?: Spacing;
+  /**
+   * @todo typing?
+   */
+  spacing?: Spacing | 'zero';
+  /**
+   * @todo typing?
+   */
+  padding?: Spacing | 'zero';
   align?: AxisPosition;
+  /**
+   * @todo typing
+   */
   justify?: AxisPosition | 'space-between';
   className?: string;
 }>;
@@ -20,9 +30,10 @@ type Props = React.PropsWithChildren<{
 export const Container = ({
   children,
   direction = 'horizontal',
-  spacing = 'm',
+  spacing = 'zero',
   align = 'start',
   justify = 'stretch',
+  padding = 'zero',
   className,
 }: Props): React.ReactElement => {
   return (
@@ -34,6 +45,7 @@ export const Container = ({
         s[`container_spacing_${spacing}`],
         s[`container_align_${align}`],
         s[`container_justify_${justify}`],
+        s[`container_padding_${padding}`],
       )}
     >
       {children}

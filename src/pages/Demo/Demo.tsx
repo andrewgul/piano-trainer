@@ -10,6 +10,7 @@ import { usePlayScale } from '@hooks/usePlayScale';
 import { Select } from '@components/Select';
 import { Option } from '@typings/Option';
 import { Container } from '@components/Container';
+import { FormContainer } from '@components/FormContainer';
 
 import s from './Demo.module.scss';
 
@@ -56,11 +57,29 @@ export const Demo = (): React.ReactElement => {
       align="center"
       justify="center"
     >
-      <Container
+      <FormContainer
+        title="Settings"
         className={s.controls}
-        direction="vertical"
-        spacing="l"
-        align="stretch"
+        actions={
+          <>
+            <Button
+              before={playing ? <FaEllipsisH /> : <FaPlay />}
+              onClick={playScale}
+              disabled={disableControls}
+              stretched
+            >
+              {playing ? 'Playing' : 'Play'}
+            </Button>
+            <Button
+              before={<FaTrashAlt />}
+              onClick={handleReset}
+              disabled={disableControls}
+              stretched
+            >
+              Reset
+            </Button>
+          </>
+        }
       >
         <Select
           label="Root Note"
@@ -74,25 +93,7 @@ export const Demo = (): React.ReactElement => {
           selectedKey={selectedScale}
           onSelect={setSelectedScale}
         />
-        <Container align="center" justify="space-between">
-          <Button
-            before={playing ? <FaEllipsisH /> : <FaPlay />}
-            onClick={playScale}
-            disabled={disableControls}
-            stretched
-          >
-            {playing ? 'Playing' : 'Play'}
-          </Button>
-          <Button
-            before={<FaTrashAlt />}
-            onClick={handleReset}
-            disabled={disableControls}
-            stretched
-          >
-            Reset
-          </Button>
-        </Container>
-      </Container>
+      </FormContainer>
       <Piano
         notation={notation}
         scale={selectedScale}

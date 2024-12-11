@@ -59,7 +59,10 @@ export const Select = <O extends Option>({
   return (
     <div className={s.wrapper}>
       {label && <span className={s.label}>{label}</span>}
-      <div className={s.selection} onClick={toggleOptions}>
+      <div
+        className={clsx(s.selection, selectedOption && s.selection_selected)}
+        onClick={toggleOptions}
+      >
         {selectedOption?.label ?? 'Select...'}
         {selectedOption && (
           <button className={s.deselect} onClick={handleDeselect}>

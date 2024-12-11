@@ -17,11 +17,17 @@
   padding: $spacing-m $spacing-xl;
   border-radius: 12px;
   background-color: $white;
-  color: $black;
+  color: $gray;
   cursor: pointer;
   position: relative;
+  transition: color 150ms ease-in-out;
 
   @include typo-text;
+
+  &_selected {
+    color: $black;
+    font-weight: 500;
+  }
 
   &:hover {
     .deselect {

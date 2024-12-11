@@ -9,11 +9,13 @@ import s from './Octave.module.scss';
 
 type Props = {
   order?: number;
+  notesInChord?: Note[] | null;
   notesInChosenScale?: Note[] | null;
 };
 
 export const Octave = ({
   order = 4,
+  notesInChord,
   notesInChosenScale,
 }: Props): React.ReactElement => {
   return (
@@ -24,9 +26,8 @@ export const Octave = ({
         return (
           <Key
             octave={order}
-            highlighted={
-              notesInChosenScale ? notesInChosenScale.includes(note) : false
-            }
+            highlighted={notesInChosenScale?.includes(note) ?? false}
+            highlightedIntense={notesInChord?.includes(note) ?? false}
             key={note}
             className={clsx(s.key, s[`key_${color}`])}
             value={note}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Piano } from '@components/Piano';
 import { Button } from '@components/Button/Button';
-import { Note, NOTES, Scale } from '@config/music';
+import { ChordInScale, Note, NOTES, Scale } from '@config/music';
 import { useAppContext } from '@components/App/context';
 import { FaTrashAlt } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
@@ -36,6 +36,9 @@ export const Demo = (): React.ReactElement => {
   const { notation, alteredNotes } = useAppContext();
   const [selectedScale, setSelectedScale] = React.useState<Scale | null>(null);
   const [selectedRootNote, setSelectedRootNote] = React.useState<Note | null>(
+    null,
+  );
+  const [selectedChord, setSelectedChord] = React.useState<ChordInScale | null>(
     null,
   );
 
@@ -96,9 +99,12 @@ export const Demo = (): React.ReactElement => {
         rootNote={selectedRootNote}
         alteredNotes={alteredNotes}
         playingNote={playingNote}
+        chord={selectedChord}
       />
       {selectedScale && selectedRootNote && (
         <ChordSelector
+          selectedChord={selectedChord}
+          onChordSelect={setSelectedChord}
           scale={selectedScale}
           rootNote={selectedRootNote}
           className={s.chords}

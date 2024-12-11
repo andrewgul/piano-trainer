@@ -16,6 +16,17 @@
       z-index: 3;
       border-radius: inherit;
     }
+
+    &-intense {
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: $highlight-intense-mask;
+        z-index: 3;
+        border-radius: inherit;
+      }
+    }
   }
 
   &_white {

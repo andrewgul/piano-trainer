@@ -14,6 +14,7 @@ type Props = {
   octave: number;
   color: KeyColor;
   highlighted?: boolean;
+  highlightedIntense?: boolean;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -23,6 +24,7 @@ export const Key = ({
   octave,
   color,
   highlighted = true,
+  highlightedIntense,
   className,
   style,
 }: Props): React.ReactElement => {
@@ -61,7 +63,8 @@ export const Key = ({
   return (
     <div
       className={clsx(s.key, className, s[`key_${color}`], {
-        [s.key_highlighted]: highlighted,
+        [s.key_highlighted]: !highlightedIntense && highlighted,
+        [s['key_highlighted-intense']]: highlightedIntense,
         // @todo refactor styles
         [s.key_white_pressed]: color === 'white' && (pressed || playing),
         [s.key_black_pressed]: color === 'black' && (pressed || playing),

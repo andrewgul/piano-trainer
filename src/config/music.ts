@@ -138,8 +138,11 @@ export const SCALE_CHORD_PATTERN_MAP: Record<Scale, ScaleChordPattern> = {
   major: MAJOR_SCALE_CHORD_PATTERN,
 };
 
-export type ChordInScale = {
+export type Chord = {
   note: Note;
   chord: BasicChord;
+};
+
+export type ChordInScale = Chord & {
   romanNumeration: string;
 };

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Note, NoteWithOctave, Scale } from '@config/music';
+import { Chord, Note, NoteWithOctave, Scale } from '@config/music';
 import { getNotesInScale } from '@utils/getNotesInScale';
+import { getNotesInChord } from '@utils/getNotesInChord';
 
 import s from './Piano.module.scss';
 import { Octave } from './Octave';
@@ -12,6 +13,7 @@ type Props = {
   notation?: 'letter' | 'solfedge';
   rootNote?: Note | null;
   scale?: Scale | null;
+  chord?: Chord | null;
   octaves?: number;
   startOctave?: number;
   alteredNotes?: AlteredNotes;
@@ -26,14 +28,23 @@ export const Piano = ({
   rootNote,
   playingNote,
   scale,
+  chord,
 }: Props): React.ReactElement => {
-  const highlightedNotes = React.useMemo(() => {
+  const notesInChosenScale = React.useMemo(() => {
     if (!rootNote || !scale) {
       return null;
     }
 
     return getNotesInScale(rootNote, scale);
   }, [rootNote, scale]);
+
+  const notesInChord = React.useMemo(() => {
+    if (!chord) {
+      return null;
+    }
+
+    return getNotesInChord(chord.note, chord.chord);
+  }, [chord]);
 
   return (
     <PianoContext.Provider value={{ notation, alteredNotes, playingNote }}>
@@ -42,7 +53,8 @@ export const Piano = ({
           (octave) => (
             <Octave
               key={octave}
-              notesInChosenScale={highlightedNotes}
+              notesInChosenScale={notesInChosenScale}
+              notesInChord={notesInChord}
               order={octave}
             />
           ),

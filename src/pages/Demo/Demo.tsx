@@ -47,7 +47,7 @@ export const Demo = (): React.ReactElement => {
     setSelectedRootNote(null);
   }, []);
 
-  const disableControls = (!selectedRootNote && !selectedScale) || playing;
+  const disableControls = !selectedRootNote || !selectedScale || playing;
 
   return (
     <CenteredLayout direction="vertical" spacing="xxl">

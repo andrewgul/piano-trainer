@@ -20,8 +20,8 @@ export const FormContainer = ({
   children,
   title,
   contentDirection = 'vertical',
-  contentSpacing = 'xxl',
-  contentPadding = 'xxl',
+  contentSpacing = 'xl',
+  contentPadding = 'xl',
   width = 360,
 }: Props): React.ReactElement => {
   return (

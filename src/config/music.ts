@@ -1,3 +1,5 @@
+import { BasicChord } from '@typings/BasicChord';
+
 export const NOTES = [
   'C',
   'C#',
@@ -98,3 +100,46 @@ export const SCALES_MAP: Record<Scale, ScaleArray> = {
 };
 
 export const NOTE_PLAYING_DURATION = 0.25;
+
+export type ScaleChordPattern = [
+  BasicChord,
+  BasicChord,
+  BasicChord,
+  BasicChord,
+  BasicChord,
+  BasicChord,
+  BasicChord,
+];
+
+export const CHORDS_NUMERATION = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii'];
+
+export const MAJOR_SCALE_CHORD_PATTERN: ScaleChordPattern = [
+  'maj',
+  'min',
+  'min',
+  'maj',
+  'maj',
+  'min',
+  'dim',
+];
+
+export const MINOR_SCALE_CHORD_PATTERN: ScaleChordPattern = [
+  'min',
+  'dim',
+  'maj',
+  'min',
+  'min',
+  'maj',
+  'maj',
+];
+
+export const SCALE_CHORD_PATTERN_MAP: Record<Scale, ScaleChordPattern> = {
+  minor: MINOR_SCALE_CHORD_PATTERN,
+  major: MAJOR_SCALE_CHORD_PATTERN,
+};
+
+export type ChordInScale = {
+  note: Note;
+  chord: BasicChord;
+  romanNumeration: string;
+};

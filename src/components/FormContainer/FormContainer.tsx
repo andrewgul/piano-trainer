@@ -1,4 +1,4 @@
-import { Container } from '@components/Container';
+import { Container, ContainerProps } from '@components/Container';
 import * as React from 'react';
 import clsx from 'clsx';
 
@@ -8,6 +8,9 @@ type Props = React.PropsWithChildren<{
   title?: string;
   className?: string;
   actions?: React.ReactNode;
+  contentDirection?: ContainerProps['direction'];
+  contentSpacing?: ContainerProps['spacing'];
+  width?: number | 'unset';
 }>;
 
 export const FormContainer = ({
@@ -15,14 +18,26 @@ export const FormContainer = ({
   actions,
   children,
   title,
+  contentDirection = 'vertical',
+  contentSpacing = 'xxl',
+  width = 360,
 }: Props): React.ReactElement => {
   return (
     <Container
       className={clsx(className, s['form-container'])}
       direction="vertical"
       align="stretch"
+      style={
+        {
+          '--width': width === 'unset' ? 'unset' : `${width}px`,
+        } as React.CSSProperties
+      }
     >
-      <Container padding="xxl" direction="vertical" spacing="l">
+      <Container
+        padding="xxl"
+        direction={contentDirection}
+        spacing={contentSpacing}
+      >
         {title && <div className={s.title}>{title}</div>}
         {children}
       </Container>

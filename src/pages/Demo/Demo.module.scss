@@ -1,0 +1,8 @@
+@import '../../styles/spacing.scss';
+
+.chords {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: $spacing-xxl;
+}

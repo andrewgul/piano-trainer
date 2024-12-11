@@ -10,6 +10,9 @@ import { usePlayScale } from '@hooks/usePlayScale';
 import { Select } from '@components/Select';
 import { Option } from '@typings/Option';
 import { FormContainer } from '@components/FormContainer';
+import { ChordSelector } from '@components/ChordSelector/ChordSelector';
+
+import s from './Demo.module.scss';
 
 import { CenteredLayout } from '@/layouts/CenteredLayout/CenteredLayout';
 
@@ -94,6 +97,13 @@ export const Demo = (): React.ReactElement => {
         alteredNotes={alteredNotes}
         playingNote={playingNote}
       />
+      {selectedScale && selectedRootNote && (
+        <ChordSelector
+          scale={selectedScale}
+          rootNote={selectedRootNote}
+          className={s.chords}
+        />
+      )}
     </CenteredLayout>
   );
 };

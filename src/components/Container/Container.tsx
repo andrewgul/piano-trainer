@@ -25,6 +25,7 @@ export type ContainerProps = React.PropsWithChildren<{
    */
   justify?: AxisPosition | 'space-between';
   className?: string;
+  style?: React.CSSProperties;
 }>;
 
 export const Container = ({
@@ -34,6 +35,7 @@ export const Container = ({
   align = 'start',
   justify = 'stretch',
   padding = 'zero',
+  style,
   className,
 }: ContainerProps): React.ReactElement => {
   return (
@@ -47,6 +49,7 @@ export const Container = ({
         s[`container_justify_${justify}`],
         s[`container_padding_${padding}`],
       )}
+      style={style}
     >
       {children}
     </div>

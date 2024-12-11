@@ -4,8 +4,7 @@
 .form-container {
   background-color: lighten($gray-light, 5%);
   border-radius: 24px;
-  width: 100%;
-  max-width: 360px;
+  width: var(--width);
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.06);

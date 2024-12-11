@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { useFlag } from '@hooks/useFlag';
 import clsx from 'clsx';
+import { MdClear } from 'react-icons/md';
 
 import s from './Select.module.scss';
 
@@ -46,11 +47,25 @@ export const Select = <O extends Option>({
     [onSelect, closeOptions, selectedKey],
   );
 
+  const handleDeselect = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.stopPropagation();
+      onSelect?.(null);
+      closeOptions();
+    },
+    [closeOptions, onSelect],
+  );
+
   return (
     <div className={s.wrapper}>
       {label && <span className={s.label}>{label}</span>}
       <div className={s.selection} onClick={toggleOptions}>
         {selectedOption?.label ?? 'Select...'}
+        {selectedOption && (
+          <button className={s.deselect} onClick={handleDeselect}>
+            <MdClear />
+          </button>
+        )}
       </div>
       <div className={s['options-root']}>
         <div className={clsx(s.options, showOptions && s.options_visible)}>

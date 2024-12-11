@@ -20,8 +20,16 @@
   background-color: $white;
   color: $black;
   cursor: pointer;
+  position: relative;
 
   @include typo-text;
+
+  &:hover {
+    .deselect {
+      transform: translate(0, -50%);
+      opacity: 1;
+    }
+  }
 }
 
 .options-root {
@@ -71,4 +79,15 @@
   &_selected {
     font-weight: 700;
   }
+}
+
+.deselect {
+  position: absolute;
+  top: 50%;
+  right: $spacing-xl;
+  transform: translate(50%, -50%);
+  opacity: 0;
+  transition:
+    transform 150ms ease-in-out,
+    opacity 150ms ease-in-out;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IconType } from 'react-icons';
-import { FaTimes } from 'react-icons/fa';
+import { MdClear } from 'react-icons/md';
 import { BsGearWideConnected } from 'react-icons/bs';
 import { FaGithub } from 'react-icons/fa';
 import clsx from 'clsx';
@@ -10,7 +10,7 @@ import s from './IconButton.module.scss';
 type Icon = 'cross' | 'gear' | 'github';
 
 const MAP_ICON: Record<Icon, IconType> = {
-  cross: FaTimes,
+  cross: MdClear,
   gear: BsGearWideConnected,
   github: FaGithub,
 };

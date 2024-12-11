@@ -4,6 +4,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useFlag } from '@hooks/useFlag';
 import clsx from 'clsx';
 import { MdClear } from 'react-icons/md';
+import { FaCaretDown } from 'react-icons/fa';
 
 import s from './Select.module.scss';
 
@@ -64,6 +65,14 @@ export const Select = <O extends Option>({
         onClick={toggleOptions}
       >
         {selectedOption?.label ?? 'Select...'}
+        <button
+          className={clsx(
+            s.dropdown,
+            selectedOption && s['dropdown_hide-on-hover'],
+          )}
+        >
+          <FaCaretDown />
+        </button>
         {selectedOption && (
           <button className={s.deselect} onClick={handleDeselect}>
             <MdClear />
@@ -76,7 +85,10 @@ export const Select = <O extends Option>({
             // @todo component
             <div
               key={option.key}
-              className={s.option}
+              className={clsx(
+                s.option,
+                option.key === selectedKey && s.option_selected,
+              )}
               onClick={() => handleSelect(option)}
             >
               <span>{option.label}</span>

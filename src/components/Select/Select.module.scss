@@ -34,6 +34,11 @@
       transform: translate(0, -50%);
       opacity: 1;
     }
+
+    .dropdown_hide-on-hover {
+      transform: translate(50%, -50%);
+      opacity: 0;
+    }
   }
 }
 
@@ -82,7 +87,7 @@
   }
 
   &_selected {
-    font-weight: 700;
+    font-weight: 500;
   }
 }
 
@@ -95,4 +100,16 @@
   transition:
     transform 150ms ease-in-out,
     opacity 150ms ease-in-out;
+}
+
+.dropdown {
+  position: absolute;
+  top: 50%;
+  right: $spacing-xl;
+  transform: translate(0, -50%);
+  opacity: 1;
+  transition:
+    transform 150ms ease-in-out,
+    opacity 150ms ease-in-out;
+  color: $black;
 }

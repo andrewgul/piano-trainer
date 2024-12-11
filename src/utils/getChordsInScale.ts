@@ -1,4 +1,5 @@
 import {
+  CHORD_ROLE,
   ChordInScale,
   CHORDS_NUMERATION,
   Note,
@@ -35,5 +36,6 @@ export const getChordsInScale = (
     romanNumeration: getChordNumerationDisplay(num, index, chordPattern),
     note: notesInScale[index],
     chord: chordPattern[index],
+    role: CHORD_ROLE[index],
   }));
 };

@@ -4,15 +4,14 @@ import * as React from 'react';
 
 import s from './ChordItem.module.scss';
 
-type Props = React.PropsWithChildren<{
+type Props = {
   className?: string;
   chord: ChordInScale;
   onChordSelect?: (chord: ChordInScale | null) => void;
-}>;
+};
 
 export const ChordItem = ({
   className,
-  children,
   chord,
   onChordSelect,
 }: Props): React.ReactElement => {
@@ -23,7 +22,7 @@ export const ChordItem = ({
 
   const handleMouseLeave = React.useCallback(
     () => onChordSelect?.(null),
-    [onChordSelect, chord],
+    [onChordSelect],
   );
 
   return (
@@ -32,7 +31,12 @@ export const ChordItem = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {children}
+      <div className={s.num}>{chord.romanNumeration}</div>
+      <div className={s.chord}>
+        {chord.note}
+        {chord.chord}
+      </div>
+      <div className={s.role}>{chord.role}</div>
     </div>
   );
 };

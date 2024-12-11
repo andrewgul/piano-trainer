@@ -113,6 +113,18 @@ export type ScaleChordPattern = [
 
 export const CHORDS_NUMERATION = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii'];
 
+export const CHORD_ROLE = [
+  'Tonic',
+  'Supertonic',
+  'Mediant',
+  'Subdominant',
+  'Dominant',
+  'Submediant',
+  'Subtonic',
+] as const;
+
+export type ChordRole = (typeof CHORD_ROLE)[number];
+
 export const MAJOR_SCALE_CHORD_PATTERN: ScaleChordPattern = [
   'maj',
   'min',
@@ -145,4 +157,5 @@ export type Chord = {
 
 export type ChordInScale = Chord & {
   romanNumeration: string;
+  role: ChordRole;
 };

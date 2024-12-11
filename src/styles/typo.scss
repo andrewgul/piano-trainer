@@ -14,3 +14,8 @@
   line-height: 1.4;
   font-weight: 500;
 }
+
+@mixin typo-mini-label {
+  font-size: 8px;
+  line-height: 1.2;
+}

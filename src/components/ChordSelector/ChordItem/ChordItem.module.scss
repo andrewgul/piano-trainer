@@ -1,3 +1,33 @@
+@import '../../../styles//typo.scss';
+@import '../../../styles//spacing.scss';
+@import '../../../styles//colors.scss';
+
 .item {
   cursor: pointer;
+
+  display: grid;
+  grid-template:
+    'num chord'
+    'role role';
+  row-gap: $spacing-s;
+  column-gap: $spacing-s;
+  justify-items: center;
+}
+
+.num {
+  grid-area: num;
+  color: $gray-dark;
+}
+
+.chord {
+  grid-area: chord;
+  font-weight: 500;
+}
+
+.role {
+  grid-area: role;
+  font-weight: 500;
+  color: $gray-dark;
+
+  @include typo-mini-label;
 }

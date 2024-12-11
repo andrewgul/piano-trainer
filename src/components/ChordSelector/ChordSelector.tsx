@@ -29,6 +29,7 @@ export const ChordSelector = ({
     <FormContainer
       contentSpacing="l"
       contentDirection="horizontal"
+      contentPadding="l"
       width="unset"
       className={className}
     >
@@ -38,10 +39,7 @@ export const ChordSelector = ({
           className={s.item}
           chord={chord}
           onChordSelect={onChordSelect}
-        >
-          {chord.romanNumeration}: {chord.note}
-          {chord.chord}
-        </ChordItem>
+        />
       ))}
     </FormContainer>
   );

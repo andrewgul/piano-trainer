@@ -10,6 +10,7 @@ type Props = React.PropsWithChildren<{
   actions?: React.ReactNode;
   contentDirection?: ContainerProps['direction'];
   contentSpacing?: ContainerProps['spacing'];
+  contentPadding?: ContainerProps['padding'];
   width?: number | 'unset';
 }>;
 
@@ -20,6 +21,7 @@ export const FormContainer = ({
   title,
   contentDirection = 'vertical',
   contentSpacing = 'xxl',
+  contentPadding = 'xxl',
   width = 360,
 }: Props): React.ReactElement => {
   return (
@@ -34,7 +36,7 @@ export const FormContainer = ({
       }
     >
       <Container
-        padding="xxl"
+        padding={contentPadding}
         direction={contentDirection}
         spacing={contentSpacing}
       >

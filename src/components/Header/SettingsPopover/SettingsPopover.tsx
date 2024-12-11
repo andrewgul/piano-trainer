@@ -1,13 +1,39 @@
 import * as React from 'react';
-import { FaPencilAlt } from 'react-icons/fa';
-import { SiSharp } from 'react-icons/si';
-import { Button } from '@components/Button/Button';
 import { useLocalStorage } from '@hooks/useLocalStorage';
-import { getAlteredNotesDisplay, getNotationDisplay } from '@config/ui';
 import { useAppContext } from '@components/App/context';
+import { Container } from '@components/Container';
+import { Select } from '@components/Select';
+import { Option } from '@typings/Option';
+import { Notation } from '@typings/Notation';
+import { AlteredNotes } from '@typings/AlteredNotes';
 
-import s from './SettingsPopover.module.scss';
 import { SidePopover, SidePopoverProps } from '../../SidePopover';
+
+const NOTATION_OPTIONS: Option<Notation>[] = [
+  {
+    key: 'letter',
+    label: 'Letter (C, D, E...)',
+  },
+  {
+    key: 'solfedge',
+    label: 'Solfedge: (Do, Re, Mi...)',
+  },
+];
+
+const ALTERED_NOTES_OPTION: Option<AlteredNotes>[] = [
+  {
+    key: '#',
+    label: 'Sharps (♯)',
+  },
+  {
+    key: 'b',
+    label: 'Flats (♭)',
+  },
+  {
+    key: 'both',
+    label: 'Both (♯, ♭)',
+  },
+];
 
 type Props = SidePopoverProps;
 
@@ -15,39 +41,51 @@ export const SettingsPopover = ({
   ...sidePopoverProps
 }: Props): React.ReactElement => {
   const { setValue: setLocalStorageValue } = useLocalStorage();
-  const { switchNotation, notation, alteredNotes, switchAlteredNotes } =
+  const { notation, alteredNotes, setAlteredNotes, setNotation } =
     useAppContext();
 
-  const handleSwitchNotation = React.useCallback(() => {
-    switchNotation((newNotation) => {
-      setLocalStorageValue('notation', newNotation);
-    });
-  }, [switchNotation, setLocalStorageValue]);
+  const selectNotation = React.useCallback(
+    (value: Notation | null) => {
+      if (!value) {
+        return;
+      }
 
-  const handlesSwitchAlteredNotes = React.useCallback(() => {
-    switchAlteredNotes((newAlteredNote) => {
-      setLocalStorageValue('altered-notes', newAlteredNote);
-    });
-  }, [switchAlteredNotes, setLocalStorageValue]);
+      setNotation(value);
+      setLocalStorageValue('notation', value);
+    },
+    [setNotation, setLocalStorageValue],
+  );
+
+  const selectAlteredNotes = React.useCallback(
+    (value: AlteredNotes | null) => {
+      if (!value) {
+        return;
+      }
+
+      setAlteredNotes(value);
+      setLocalStorageValue('altered-notes', value);
+    },
+    [setAlteredNotes, setLocalStorageValue],
+  );
 
   return (
     <SidePopover {...sidePopoverProps}>
-      <div className={s.buttons}>
-        <Button
-          content="start"
-          before={<FaPencilAlt />}
-          onClick={handleSwitchNotation}
-        >
-          Notation: {getNotationDisplay(notation)}
-        </Button>
-        <Button
-          content="start"
-          before={<SiSharp />}
-          onClick={handlesSwitchAlteredNotes}
-        >
-          Altered Notes: {getAlteredNotesDisplay(alteredNotes)}
-        </Button>
-      </div>
+      <Container direction="vertical" spacing="l" align="stretch">
+        <Select
+          label="Notation"
+          selectedKey={notation}
+          options={NOTATION_OPTIONS}
+          onSelect={selectNotation}
+          allowDeselect={false}
+        />
+        <Select
+          label="Altered Notes"
+          selectedKey={alteredNotes}
+          options={ALTERED_NOTES_OPTION}
+          onSelect={selectAlteredNotes}
+          allowDeselect={false}
+        />
+      </Container>
     </SidePopover>
   );
 };

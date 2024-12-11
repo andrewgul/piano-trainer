@@ -12,6 +12,7 @@ type Props<O extends Option> = {
   options: O[];
   selectedKey: O['key'] | null;
   label?: string;
+  allowDeselect?: boolean;
   onSelect?: (newKey: O['key'] | null) => void;
 };
 
@@ -22,6 +23,7 @@ export const Select = <O extends Option>({
   label,
   selectedKey,
   options,
+  allowDeselect = true,
   onSelect,
 }: Props<O>): React.ReactElement => {
   const {
@@ -68,12 +70,12 @@ export const Select = <O extends Option>({
         <button
           className={clsx(
             s.dropdown,
-            selectedOption && s['dropdown_hide-on-hover'],
+            selectedOption && allowDeselect && s['dropdown_hide-on-hover'],
           )}
         >
           <FaCaretDown />
         </button>
-        {selectedOption && (
+        {selectedOption && allowDeselect && (
           <button className={s.deselect} onClick={handleDeselect}>
             <MdClear />
           </button>

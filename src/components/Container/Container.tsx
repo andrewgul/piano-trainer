@@ -9,7 +9,7 @@ type Spacing = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 type AxisPosition = 'start' | 'center' | 'end' | 'stretch';
 
-type Props = React.PropsWithChildren<{
+export type ContainerProps = React.PropsWithChildren<{
   direction?: Direction;
   /**
    * @todo typing?
@@ -35,7 +35,7 @@ export const Container = ({
   justify = 'stretch',
   padding = 'zero',
   className,
-}: Props): React.ReactElement => {
+}: ContainerProps): React.ReactElement => {
   return (
     <div
       className={clsx(

@@ -9,10 +9,9 @@ import { FaEllipsisH } from 'react-icons/fa';
 import { usePlayScale } from '@hooks/usePlayScale';
 import { Select } from '@components/Select';
 import { Option } from '@typings/Option';
-import { Container } from '@components/Container';
 import { FormContainer } from '@components/FormContainer';
 
-import s from './Demo.module.scss';
+import { CenteredLayout } from '@/layouts/CenteredLayout/CenteredLayout';
 
 const SCALE_OPTIONS = [
   {
@@ -51,15 +50,9 @@ export const Demo = (): React.ReactElement => {
   const disableControls = (!selectedRootNote && !selectedScale) || playing;
 
   return (
-    <Container
-      className={s.container}
-      direction="vertical"
-      align="center"
-      justify="center"
-    >
+    <CenteredLayout direction="vertical" spacing="xxl">
       <FormContainer
         title="Settings"
-        className={s.controls}
         actions={
           <>
             <Button
@@ -101,6 +94,6 @@ export const Demo = (): React.ReactElement => {
         alteredNotes={alteredNotes}
         playingNote={playingNote}
       />
-    </Container>
+    </CenteredLayout>
   );
 };

@@ -28,7 +28,7 @@ export const Key = ({
   className,
   style,
 }: Props): React.ReactElement => {
-  const { notation, alteredNotes } = usePianoContext();
+  const { notation, alteredNotes, onPlayNote } = usePianoContext();
   const [pressed, setPressed] = React.useState(false);
 
   const { playingNote } = usePianoContext();
@@ -39,9 +39,15 @@ export const Key = ({
     playNote(value, { octave });
   }, [value, octave]);
 
+  const handleClick = React.useCallback(() => {
+    onPlayNote?.(value);
+    play();
+  }, [value, play, onPlayNote]);
+
   const handlePressStart = React.useCallback(() => {
+    onPlayNote?.(value);
     setPressed(true);
-  }, []);
+  }, [value, onPlayNote]);
 
   const handlePressEnd = React.useCallback(() => {
     setPressed(false);
@@ -69,7 +75,7 @@ export const Key = ({
         [s.key_white_pressed]: color === 'white' && (pressed || playing),
         [s.key_black_pressed]: color === 'black' && (pressed || playing),
       })}
-      onClick={play}
+      onClick={handleClick}
       style={style}
       onMouseDown={handlePressStart}
       onMouseUp={handlePressEnd}

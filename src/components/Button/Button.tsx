@@ -15,6 +15,9 @@ type Props = {
   HTMLButtonElement
 > & { selected?: boolean };
 
+/**
+ * @todo fix icons alignment
+ */
 export const Button = ({
   selected,
   children,

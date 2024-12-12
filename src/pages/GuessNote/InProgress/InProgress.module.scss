@@ -1,0 +1,11 @@
+@import '../../../styles/colors.scss';
+
+.right {
+  font-weight: 600;
+  color: $color-success;
+}
+
+.wrong {
+  font-weight: 600;
+  color: $color-error;
+}

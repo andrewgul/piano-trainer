@@ -49,7 +49,7 @@ export const InProgress = (): React.ReactElement => {
 
   return (
     <CenteredLayout direction="vertical" spacing="xxl">
-      <FormContainer title={`Guess the Note! ${result.right}/${result.total}`}>
+      <FormContainer title="Guess the Note!">
         <div>
           <If condition={currentGuess === currentNote}>
             You're right! It's <span className={s.right}>{currentNote}</span>
@@ -76,6 +76,9 @@ export const InProgress = (): React.ReactElement => {
         >
           Next
         </Button>
+        <div className={s.result}>
+          {result.right} / {result.total}
+        </div>
       </FormContainer>
       <Piano octaves={1} playingNote={playingNote} onPlayNote={guess} />
     </CenteredLayout>

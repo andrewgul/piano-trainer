@@ -1,11 +1,17 @@
 @import '../../../styles/colors.scss';
+@import '../../../styles/spacing.scss';
+
+.result {
+  padding: $spacing-m $spacing-xl;
+  border-radius: 12px;
+  font-weight: 600;
+  background-color: $white;
+}
 
 .right {
-  font-weight: 600;
   color: $color-success;
 }
 
 .wrong {
-  font-weight: 600;
   color: $color-error;
 }

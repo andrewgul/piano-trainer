@@ -1,3 +1,7 @@
+// @todo all values to vars
+$typo-text-font-size: 16px;
+$typo-label-font-size: 14px;
+
 @mixin typo-title {
   font-size: 32px;
   line-height: 1.5;
@@ -5,7 +9,7 @@
 }
 
 @mixin typo-text {
-  font-size: 16px;
+  font-size: $typo-text-font-size;
   line-height: 1.5;
 }
 

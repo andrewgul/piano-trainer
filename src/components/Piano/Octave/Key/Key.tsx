@@ -84,7 +84,7 @@ export const Key = ({
       onTouchEnd={handlePressEnd}
     >
       <div className={clsx(s.value, s[`value_${color}`])}>
-        {getDisplayedNote(value, notation, alteredNotes)}
+        {getDisplayedNote(value, { notation, alteredNotes })}
       </div>
     </div>
   );

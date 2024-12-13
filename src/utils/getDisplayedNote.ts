@@ -1,39 +1,33 @@
-import { Note, NOTES, NOTES_SOLFEGE_NOTATION_MAP } from '@config/music';
+import { isNaturalNote, Note, NOTE_DISPLAY_CONFIG } from '@config/music';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
+import { Notation } from '@typings/Notation';
 
-import { AlteredNotes } from '@/typings/AlteredNotes';
-import { Notation } from '@/typings/Notation';
+export type DisplayedNoteConfig = Partial<{
+  notation: Notation;
+  alteredNotes: AlteredNotesDisplay;
+}>;
 
-export const getNotatedNote = (note: Note, notation: Notation) => {
-  if (notation === 'letter') {
-    return note.replace('#', '♯');
-  }
-
-  return NOTES_SOLFEGE_NOTATION_MAP[note];
-};
-
-/**
- * @todo fix both displayed notes
- */
 export const getDisplayedNote = (
   note: Note,
-  notation: Notation,
-  alteredNotes: AlteredNotes,
-) => {
-  if (!note.endsWith('#')) {
-    return getNotatedNote(note, notation);
+  { notation = 'letter', alteredNotes = '#' }: DisplayedNoteConfig = {},
+): string => {
+  if (isNaturalNote(note)) {
+    const config = NOTE_DISPLAY_CONFIG[note];
+
+    return config[notation];
   }
 
-  if (alteredNotes === '#') {
-    return getNotatedNote(note, notation);
+  const config = NOTE_DISPLAY_CONFIG[note];
+
+  const sharp = `${config['#'][notation]}♯`;
+  const flat = `${config['b'][notation]}♭`;
+
+  switch (alteredNotes) {
+    case '#':
+      return sharp;
+    case 'b':
+      return flat;
+    case 'both':
+      return `${sharp} ${flat}`;
   }
-
-  const alteredNoteIndex = NOTES.indexOf(note);
-  const nextNaturalNoteIndex = alteredNoteIndex + 1;
-  const alteredNoteAlternativeValue = `${getNotatedNote(NOTES[nextNaturalNoteIndex], notation)}♭`;
-
-  if (alteredNotes === 'b') {
-    return alteredNoteAlternativeValue;
-  }
-
-  return `${note} / ${alteredNoteAlternativeValue}`;
 };

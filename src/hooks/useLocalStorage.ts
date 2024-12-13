@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
-import { AlteredNotes } from '@/typings/AlteredNotes';
 import { Notation } from '@/typings/Notation';
 
 type LocalStorageData = {
   notation: Notation;
-  'altered-notes': AlteredNotes;
+  'altered-notes': AlteredNotesDisplay;
 };
 
 type LocalStorageKeys = keyof LocalStorageData;

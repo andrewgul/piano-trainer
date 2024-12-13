@@ -11,6 +11,7 @@ import { Select } from '@components/Select';
 import { Option } from '@typings/Option';
 import { FormContainer } from '@components/FormContainer';
 import { ChordSelector } from '@components/ChordSelector/ChordSelector';
+import { DisplayedNoteConfig, getDisplayedNote } from '@utils/getDisplayedNote';
 
 import s from './Demo.module.scss';
 
@@ -27,10 +28,14 @@ const SCALE_OPTIONS = [
   },
 ] satisfies Option<Scale>[];
 
-const ROOT_NOTE_OPTIONS: Option<Note>[] = NOTES.map((note) => ({
-  label: note,
-  key: note,
-}));
+const getRootNoteOptions = ({
+  notation,
+  alteredNotes,
+}: DisplayedNoteConfig = {}): Option<Note>[] =>
+  NOTES.map((note) => ({
+    label: getDisplayedNote(note, { notation, alteredNotes }),
+    key: note,
+  }));
 
 export const Demo = (): React.ReactElement => {
   const { notation, alteredNotes } = useAppContext();
@@ -54,6 +59,11 @@ export const Demo = (): React.ReactElement => {
   }, []);
 
   const disableControls = !selectedRootNote || !selectedScale || playing;
+
+  const rootNoteOptions = React.useMemo(
+    () => getRootNoteOptions({ notation, alteredNotes }),
+    [notation, alteredNotes],
+  );
 
   return (
     <CenteredLayout direction="vertical" spacing="xxl">
@@ -82,7 +92,7 @@ export const Demo = (): React.ReactElement => {
       >
         <Select
           label="Root Note"
-          options={ROOT_NOTE_OPTIONS}
+          options={rootNoteOptions}
           selectedKey={selectedRootNote}
           onSelect={setSelectedRootNote}
         />

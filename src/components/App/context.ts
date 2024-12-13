@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
 import { Notation } from '@/typings/Notation';
-import { AlteredNotes } from '@/typings/AlteredNotes';
 
 type SwitchFunction<V> = (callback: (newValue: V) => void) => void;
 
@@ -9,9 +9,9 @@ type AppContextValue = {
   notation: Notation;
   setNotation: (value: Notation) => void;
   switchNotation: SwitchFunction<Notation>;
-  alteredNotes: AlteredNotes;
-  setAlteredNotes: (value: AlteredNotes) => void;
-  switchAlteredNotes: SwitchFunction<AlteredNotes>;
+  alteredNotes: AlteredNotesDisplay;
+  setAlteredNotes: (value: AlteredNotesDisplay) => void;
+  switchAlteredNotes: SwitchFunction<AlteredNotesDisplay>;
 };
 
 type AppContextValueOmittedSetters = Omit<
@@ -37,12 +37,13 @@ export const useCreateAppContext = ({
   const [notation, setNotation] = React.useState<Notation>(
     defaultNotation ?? 'letter',
   );
-  const [alteredNotes, setAlteredNotes] = React.useState<AlteredNotes>('#');
+  const [alteredNotes, setAlteredNotes] =
+    React.useState<AlteredNotesDisplay>('#');
 
   const switchNotation = React.useCallback(
     (onChange?: (newNotation: Notation) => void) => {
       setNotation((prevNotation) => {
-        const newNotation = prevNotation === 'letter' ? 'solfedge' : 'letter';
+        const newNotation = prevNotation === 'letter' ? 'solfege' : 'letter';
         onChange?.(newNotation);
 
         return newNotation;
@@ -52,9 +53,9 @@ export const useCreateAppContext = ({
   );
 
   const switchAlteredNotes = React.useCallback(
-    (onChange?: (newAlteredNotes: AlteredNotes) => void) => {
+    (onChange?: (newAlteredNotes: AlteredNotesDisplay) => void) => {
       setAlteredNotes((prevAlteredNotes) => {
-        const newAlteredNotes: AlteredNotes =
+        const newAlteredNotes: AlteredNotesDisplay =
           prevAlteredNotes === '#'
             ? 'b'
             : prevAlteredNotes === 'b'

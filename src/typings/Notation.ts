@@ -1,1 +1,1 @@
-export type Notation = 'letter' | 'solfedge';
+export type Notation = 'letter' | 'solfege';

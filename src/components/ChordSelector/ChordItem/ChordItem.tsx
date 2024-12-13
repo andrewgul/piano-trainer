@@ -1,6 +1,7 @@
 import { ChordInScale } from '@config/music';
 import clsx from 'clsx';
 import * as React from 'react';
+import { useDisplayNote } from '@hooks/useDisplayNote';
 
 import s from './ChordItem.module.scss';
 
@@ -15,6 +16,8 @@ export const ChordItem = ({
   chord,
   onChordSelect,
 }: Props): React.ReactElement => {
+  const { getDisplayedNote } = useDisplayNote();
+
   const handleMouseEnter = React.useCallback(
     () => onChordSelect?.(chord),
     [onChordSelect, chord],
@@ -33,8 +36,8 @@ export const ChordItem = ({
     >
       <div className={s.num}>{chord.romanNumeration}</div>
       <div className={s.chord}>
-        {chord.note}
-        {chord.chord}
+        <span className={s['chord-note']}>{getDisplayedNote(chord.note)}</span>
+        <span className={s['chord-chord']}>{chord.chord}</span>
       </div>
       <div className={s.role}>{chord.role}</div>
     </div>

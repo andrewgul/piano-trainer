@@ -6,10 +6,10 @@ import { Home } from '@pages/Home';
 import { Header } from '@components/Header';
 import { PATHS } from '@config/paths';
 import { GuessNote } from '@pages/GuessNote/GuessNote';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
 import { AppContext, useCreateAppContext } from './context';
 
-import { AlteredNotes } from '@/typings/AlteredNotes';
 import { Notation } from '@/typings/Notation';
 
 import './main.scss';
@@ -22,7 +22,7 @@ export const App = (): React.ReactElement => {
    */
   const context = useCreateAppContext({
     notation: getLocalStorageValue('notation') as Notation,
-    alteredNotes: getLocalStorageValue('altered-notes') as AlteredNotes,
+    alteredNotes: getLocalStorageValue('altered-notes') as AlteredNotesDisplay,
   });
 
   return (

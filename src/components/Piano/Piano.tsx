@@ -2,21 +2,20 @@ import * as React from 'react';
 import { Chord, Note, NoteWithOctave, Scale } from '@config/music';
 import { getNotesInScale } from '@utils/getNotesInScale';
 import { getNotesInChord } from '@utils/getNotesInChord';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
 import s from './Piano.module.scss';
 import { Octave } from './Octave';
 import { PianoContext } from './context';
 
-import { AlteredNotes } from '@/typings/AlteredNotes';
-
 type Props = {
-  notation?: 'letter' | 'solfedge';
+  notation?: 'letter' | 'solfege';
   rootNote?: Note | null;
   scale?: Scale | null;
   chord?: Chord | null;
   octaves?: number;
   startOctave?: number;
-  alteredNotes?: AlteredNotes;
+  alteredNotes?: AlteredNotesDisplay;
   playingNote?: NoteWithOctave | null;
   onPlayNote?: (note: Note) => void;
 };

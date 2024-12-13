@@ -8,12 +8,14 @@ import { Note } from '@config/music';
 import { If } from '@components/If';
 import { FaPlay } from 'react-icons/fa6';
 import { GrFormNextLink } from 'react-icons/gr';
+import { useDisplayNote } from '@hooks/useDisplayNote';
 
 import s from './InProgress.module.scss';
 
 import { CenteredLayout } from '@/layouts/CenteredLayout/CenteredLayout';
-
 export const InProgress = (): React.ReactElement => {
+  const { notation, alteredNotes, getDisplayedNote } = useDisplayNote();
+
   const { play, playingNote } = usePlayNote();
   const [currentNote, setCurrentNote] = React.useState(getRandomNote());
   const [currentGuess, setCurrentGuess] = React.useState<Note | null>(null);
@@ -52,11 +54,16 @@ export const InProgress = (): React.ReactElement => {
       <FormContainer title="Guess the Note!">
         <div>
           <If condition={currentGuess === currentNote}>
-            You're right! It's <span className={s.right}>{currentNote}</span>
+            You're right! It's{' '}
+            <span className={s.right}>{getDisplayedNote(currentNote)}</span>
           </If>
           <If condition={currentGuess && currentGuess !== currentNote}>
-            Sorry, it's not <span className={s.wrong}>{currentGuess}</span>...
-            The note was <span className={s.right}>{currentNote}</span>
+            Sorry, it's not{' '}
+            <span className={s.wrong}>
+              {currentGuess && getDisplayedNote(currentGuess)}
+            </span>
+            ... The note was{' '}
+            <span className={s.right}>{getDisplayedNote(currentNote)}</span>
           </If>
           <If condition={!currentGuess}>Choose wisely!</If>
         </div>
@@ -80,7 +87,13 @@ export const InProgress = (): React.ReactElement => {
           {result.right} / {result.total}
         </div>
       </FormContainer>
-      <Piano octaves={1} playingNote={playingNote} onPlayNote={guess} />
+      <Piano
+        octaves={1}
+        playingNote={playingNote}
+        onPlayNote={guess}
+        notation={notation}
+        alteredNotes={alteredNotes}
+      />
     </CenteredLayout>
   );
 };

@@ -5,7 +5,7 @@ import { Container } from '@components/Container';
 import { Select } from '@components/Select';
 import { Option } from '@typings/Option';
 import { Notation } from '@typings/Notation';
-import { AlteredNotes } from '@typings/AlteredNotes';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
 import { SidePopover, SidePopoverProps } from '../../SidePopover';
 
@@ -15,12 +15,12 @@ const NOTATION_OPTIONS: Option<Notation>[] = [
     label: 'Letter (C, D, E...)',
   },
   {
-    key: 'solfedge',
-    label: 'Solfedge: (Do, Re, Mi...)',
+    key: 'solfege',
+    label: 'Solfege: (Do, Re, Mi...)',
   },
 ];
 
-const ALTERED_NOTES_OPTION: Option<AlteredNotes>[] = [
+const ALTERED_NOTES_OPTION: Option<AlteredNotesDisplay>[] = [
   {
     key: '#',
     label: 'Sharps (♯)',
@@ -57,7 +57,7 @@ export const SettingsPopover = ({
   );
 
   const selectAlteredNotes = React.useCallback(
-    (value: AlteredNotes | null) => {
+    (value: AlteredNotesDisplay | null) => {
       if (!value) {
         return;
       }

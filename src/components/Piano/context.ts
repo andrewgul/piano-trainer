@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Note, NoteWithOctave } from '@config/music';
+import { AlteredNotesDisplay } from '@typings/AlteredNotesDisplay';
 
-import { AlteredNotes } from '@/typings/AlteredNotes';
 import { Notation } from '@/typings/Notation';
 
 type PianoContextValue = {
   notation: Notation;
-  alteredNotes: AlteredNotes;
+  alteredNotes: AlteredNotesDisplay;
   playingNote?: NoteWithOctave | null;
   onPlayNote?: (note: Note) => void;
 };

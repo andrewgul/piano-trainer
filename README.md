@@ -1,3 +1,8 @@
-😛
+# Piano Trainer 🎹
 
-Right now deployed here: https://piano-trainer.vercel.app/
+**Deployed here:** https://piano-trainer.vercel.app/
+
+## Available features
+- **Scale finder** - choose root note and scale (major / minor). Notes is scale will be highlighted and chords in scale will be displayed. On chord hover its notes will be highlighted.
+- **Guess the Note game** - try to guess note after hearing it
+- **Set preferred note notation / altered notes display** - in settings you can choose choose preferred notation (letter or solfege) & how to display altered notes as flats or sharps (or both)

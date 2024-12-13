@@ -1,0 +1,17 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/spacing.scss';
+
+.result {
+  padding: $spacing-m $spacing-xl;
+  border-radius: 12px;
+  font-weight: 600;
+  background-color: $white;
+}
+
+.right {
+  color: $color-success;
+}
+
+.wrong {
+  color: $color-error;
+}

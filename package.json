@@ -10,7 +10,8 @@
     "lint:fix": "eslint --fix .",
     "yay": "yarn prettier && yarn lint:fix",
     "prettier": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@types/node": "^22.10.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
@@ -34,6 +36,7 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.15.0",
     "vite": "^6.0.1",
-    "vite-tsconfig-paths": "^5.1.3"
+    "vite-tsconfig-paths": "^5.1.3",
+    "vitest": "^2.1.8"
   }
 }
